@@ -1,0 +1,17 @@
+﻿
+/*style for animating vue 'fade-transitions'*/
+.fade-move {
+    transition: transform .3s linear;
+}
+
+
+/*used for animating div expanding/contracting in conjunction with mutant-transitions.js*/
+.slow-transition {
+    -webkit-transition: height .3s linear;
+    -moz-transition: height .3s linear;
+    -ms-transition: height .3s linear;
+    -o-transition: height .3s linear;
+    transition: height .3s linear;
+    transition: all .3s linear;
+    overflow: hidden;
+}

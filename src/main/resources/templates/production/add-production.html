@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+<body>
+<div id="wrapper">
+
+    <!--Navbar-->
+    <th:block th:insert="~{fragments/navbar}"/>
+    <!--End of Navbar-->
+
+    <!--Main content-->
+    <main>
+        <div id="content-wrapper" class="flex-column">
+
+            <!--Main content - Partials-->
+            <div class="container-fluid">
+                <div id="production">
+                    <v-app>
+                        <v-container>
+                            <template v-if="loading">
+                                <div class="loader"></div>
+                            </template>
+                            <template v-else>
+
+                            </template>
+                        </v-container>
+                    </v-app>
+                </div>
+            </div>
+            <!--End of Main content - Partials-->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <th:block th:insert="~{fragments/footer}"/>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+    </main>
+    <!--End of main content-->
+
+</div>
+
+<th:block th:insert="~{fragments/scripts}"></th:block>
+<script th:src="@{/VueComponents/production/production.js}"></script>
+
+</body>
+</html>

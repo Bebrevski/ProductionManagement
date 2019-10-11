@@ -1,0 +1,52 @@
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
+        <div class="sidebar-brand-icon">
+        <img style="width: 50px" src="/images/logo.jpg" />
+        </div>
+        <div class="sidebar-brand-text mx-3">Production Management<sup> <i class="fas fa-paper-plane"></i></sup></div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item" id="indexLink">
+        <a class="nav-link" href="#">
+            <i class="menu-icon fa fa-home"></i>
+            <span>Начало</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Nav Item - Pages Collapse Menu Приемане на отпадъци -->
+    <li class="nav-item">
+        <a class="nav-link collapsed cursor-pointer" data-toggle="collapse" data-target="#collapseTwo"
+           aria-expanded="true" aria-controls="collapseTwo">
+            <i class="menu-icon fas fa-sign-in-alt fa-fw"></i>
+            <span>Производства</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-green py-2 collapse-inner rounded">
+                <a class="collapse-item" th:href="@{/production/create}">
+                    <i class="collapse-icon fa fa-plus"></i>
+                    <span>Ново производство</span>
+                </a>
+                <a class="collapse-item" th:href="@{/production/allProductions}">
+                    <i class="collapse-icon fas fa-search"></i>
+                    <span>Всички производства</span>
+                </a>
+            </div>
+        </div>
+    </li>
+
+    <hr class="sidebar-divider">
+    <div class="text-center d-md-inline" style="display:block !important;">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+</ul>
+<!-- End of Sidebar -->
