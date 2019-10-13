@@ -11274,7 +11274,7 @@ a:focus {
 }
 
 @media (min-width: 900px) {.sidebar{
-        width: 13% !important;
+        width: 13%;
         background-position-x: right;
     }
   .sidebar .nav-item .collapse {

@@ -6,17 +6,32 @@
     <v-card-text>
         <v-layout row>
             <v-flex auto>
-                <v-text-field v-model="Production.GPSCoordinates"
-                              label="GPS Координати"
-                              required>
-                </v-text-field>
+                <v-radio-group v-model="isGPSCoordinates" row>
+                    <v-radio label="GPS Координати"
+                             v-bind:value="true">
+                    </v-radio>
+                    <v-radio label="Адрес"
+                             v-bind:value="false">
+                    </v-radio>
+                </v-radio-group>
             </v-flex>
-            <v-flex auto>
-                <v-text-field v-model="Production.fullAddress"
-                              label="Адрес"
-                              required>
-                </v-text-field>
+            <v-flex auto md8>
+                <template v-if="isGPSCoordinates">
+                    <v-text-field v-model="Production.GPSCoordinates"
+                                  label="GPS Координати"
+                                  required>
+                    </v-text-field>
+                </template>
+                <template v-else>
+                    <v-text-field v-model="Production.fullAddress"
+                                  label="Адрес"
+                                  required>
+                    </v-text-field>
+                </template>
             </v-flex>
         </v-layout>
     </v-card-text>
 </v-card>
+<div id="latclicked"></div>
+<div id="longclicked"></div>
+<div id="mapCoordinates"></div>

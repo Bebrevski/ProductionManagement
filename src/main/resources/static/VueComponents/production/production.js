@@ -2,7 +2,8 @@ var productionComponent = new Vue({
     el: "#production",
     data: {
         Production: new Production(), //change to null when logic for edit is needed
-        loading: false
+        loading: false,
+        isGPSCoordinates: true
     },
     created: function () {
 
