@@ -7,36 +7,45 @@
 <body>
 <div id="wrapper">
 
-    <!--Navbar-->
+    <!--SideBar-->
     <th:block th:insert="~{fragments/navbar}"/>
-    <!--End of Navbar-->
+    <!--End of SideBar-->
 
     <!--Main content-->
-    <main>
-        <div id="content-wrapper" class="flex-column">
+    <div id="content-wrapper" class="flex-column">
 
-            <!--Main content-->
-            <div class="container-fluid">
-                <div id="map" style="width: 90%; height: 80%; position: absolute;">
-                </div>
-            </div>
-            <!--End of Main content-->
+        <!-- Topbar -->
+        <th:block th:insert="~{fragments/topbar}"/>
+        <!--End of Topbar-->
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <th:block th:insert="~{fragments/footer}"/>
-            </footer>
-            <!-- End of Footer -->
+        <!--Breadcrumbs GOES HERE-->
+        <ul id="breadcrumb">
+            <li><a><span class="fa fa-home"> </span></a></li>
 
+        </ul>
+        <!--End of Breadcrumbs-->
+
+        <!--Main content-->
+        <div class="content">
+            <div id="view-header"><h3 class="ml-4">Начало</h3></div>
+            <div id="map"></div>
         </div>
-    </main>
+        <!--End of Main content-->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <th:block th:insert="~{fragments/footer}"/>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
     <!--End of main content-->
 
 </div>
 <th:block th:insert="~{fragments/scripts}"></th:block>
 <script th:src="@{/VueComponents/map/map.js}"></script>
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwmMhxe_w3jfoJCTGOtpxhSaVWoiIZx5A&callback=initMap">
-</script>
+<!--<script async defer-->
+        <!--src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwmMhxe_w3jfoJCTGOtpxhSaVWoiIZx5A&callback=initMap">-->
+<!--</script>-->
 </body>
 </html>

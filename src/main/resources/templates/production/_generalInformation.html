@@ -1,0 +1,31 @@
+<!--suppress ALL -->
+<v-card class="mx-auto card-cursor-default"
+        hover>
+    <v-card-title class="align-end fill-height">
+        <v-toolbar-title class="align-end fill-height">Основна информация</v-toolbar-title>
+        <v-spacer></v-spacer>
+    </v-card-title>
+    <v-card-text>
+        <v-layout row>
+            <v-flex auto md3>
+                <v-text-field v-model="Production.name"
+                              label="Име на производството">
+                </v-text-field>
+            </v-flex>
+            <v-flex></v-flex>
+            <v-flex auto md3>
+                <v-text-field label="Идентификационен номер"
+                              v-model="Production.identifyingNumber">
+                </v-text-field>
+            </v-flex>
+            <v-flex></v-flex>
+            <v-flex auto md3>
+                <v-text-field v-bind:label="Production.dateCreated ? 'Дата на създаване' : 'Днешна дата'"
+                              :placeholder="getDate(Production.dateCreated)"
+                              readonly
+                              disabled>
+                </v-text-field>
+            </v-flex>
+        </v-layout>
+    </v-card-text>
+</v-card>

@@ -1,0 +1,22 @@
+<!--suppress ALL -->
+<v-card class="mx-auto card-cursor-default" hover>
+    <v-card-title class="align-end fill-height">
+        <v-toolbar-title class="align-end fill-height">Локация</v-toolbar-title>
+    </v-card-title>
+    <v-card-text>
+        <v-layout row>
+            <v-flex auto>
+                <v-text-field v-model="Production.GPSCoordinates"
+                              label="GPS Координати"
+                              required>
+                </v-text-field>
+            </v-flex>
+            <v-flex auto>
+                <v-text-field v-model="Production.fullAddress"
+                              label="Адрес"
+                              required>
+                </v-text-field>
+            </v-flex>
+        </v-layout>
+    </v-card-text>
+</v-card>

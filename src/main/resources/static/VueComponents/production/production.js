@@ -1,10 +1,23 @@
 var productionComponent = new Vue({
     el: "#production",
     data: {
-        loading: true
+        Production: new Production(), //change to null when logic for edit is needed
+        loading: false
     },
     created: function () {
 
     },
-    methods: {}
+    methods: {
+
+    },
+    computed: {
+        getDate: function () {
+            return prodCreatedDate => {
+                if (prodCreatedDate) {
+                    return dateAndTimeFormated(prodCreatedDate);
+                }
+                return dateFormated(Date.now());
+            }
+        }
+    }
 });

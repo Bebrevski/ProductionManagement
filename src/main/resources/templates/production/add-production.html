@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress ALL -->
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
@@ -7,45 +8,64 @@
 <body>
 <div id="wrapper">
 
-    <!--Navbar-->
+    <!--Sidebar-->
     <th:block th:insert="~{fragments/navbar}"/>
-    <!--End of Navbar-->
+    <!--End of Sidebar-->
 
     <!--Main content-->
-    <main>
-        <div id="content-wrapper" class="flex-column">
+    <div id="content-wrapper" class="flex-column">
 
-            <!--Main content - Partials-->
-            <div class="container-fluid">
-                <div id="production">
-                    <v-app>
-                        <v-container>
-                            <template v-if="loading">
-                                <div class="loader"></div>
-                            </template>
-                            <template v-else>
+        <!-- Topbar -->
+        <th:block th:insert="~{fragments/topbar}"/>
+        <!--End of Topbar-->
 
-                            </template>
-                        </v-container>
-                    </v-app>
-                </div>
+        <!--Breadcrumbs GOES HERE-->
+        <ul id="breadcrumb">
+            <li><a><span class="fa fa-home"> </span></a></li>
+
+        </ul>
+        <!--End of Breadcrumbs-->
+
+        <!--Main page content-->
+        <div id="content">
+            <div id="view-header"><h3 class="ml-4">Ново производство</h3></div>
+            <!-- Vue Component-->
+            <div id="production">
+                <v-app>
+                    <v-container>
+                        <template v-if="loading">
+                            <div class="loader"></div>
+                        </template>
+                        <template v-else>
+                            <v-form>
+                                <th:block th:insert="~{production/_generalInformation}"/>
+                                <v-divider></v-divider>
+                                <th:block th:insert="~{production/_location}"/>
+                            </v-form>
+                        </template>
+                    </v-container>
+                </v-app>
             </div>
-            <!--End of Main content - Partials-->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <th:block th:insert="~{fragments/footer}"/>
-            </footer>
-            <!-- End of Footer -->
-
+            <!-- End of Component -->
         </div>
-    </main>
+        <!-- End of main page content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <th:block th:insert="~{fragments/footer}"/>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
     <!--End of main content-->
 
 </div>
 
+<!-- Section Scripts -->
 <th:block th:insert="~{fragments/scripts}"></th:block>
+<script th:src="@{/Models/Production.js}"></script>
 <script th:src="@{/VueComponents/production/production.js}"></script>
+<!-- Section Scripts -->
 
 </body>
 </html>
