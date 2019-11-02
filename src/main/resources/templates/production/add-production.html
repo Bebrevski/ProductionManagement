@@ -40,9 +40,17 @@
                             <v-form>
                                 <th:block th:insert="~{production/_generalInformation}"/>
                                 <v-divider></v-divider>
-                                <th:block th:insert="~{production/_location}"/>
+                                <th:block th:insert="~{production/_additionalInformation}"/>
                                 <v-divider></v-divider>
-
+                                <th:block th:insert="~{production/_location}"/>
+                                <div style="margin-left:42%; display:inline-block;">
+                                    <v-btn class="ma-2"
+                                           v-on:click="onProductionSubmit"
+                                           dark>
+                                        <i class="fa fa-save" style="color:white"></i>&nbsp;
+                                        Запази
+                                    </v-btn>
+                                </div>
                             </v-form>
                         </template>
                     </v-container>
@@ -68,9 +76,9 @@
 <script th:src="@{/Models/Production.js}"></script>
 <script th:src="@{/VueComponents/production/production.js}"></script>
 <script th:src="@{/VueComponents/map/mapCoordinates.js}"></script>
-<!--<script async defer-->
-<!--src="https://maps.googleapis.com/maps/api/js?key=key-here&callback=initMapCoordinates">-->
-<!--</script>-->
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwmMhxe_w3jfoJCTGOtpxhSaVWoiIZx5A&callback=initMapCoordinates">
+</script>
 <!-- Section Scripts -->
 
 </body>

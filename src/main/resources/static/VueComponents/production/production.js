@@ -6,10 +6,12 @@ var productionComponent = new Vue({
         isGPSCoordinates: true
     },
     created: function () {
-
+        let vue = this;
     },
     methods: {
-
+        onProductionSubmit() {
+            handleProductionSubmit(this);
+        }
     },
     computed: {
         getDate: function () {
@@ -22,3 +24,11 @@ var productionComponent = new Vue({
         }
     }
 });
+
+function handleProductionSubmit(vue) {
+    vue.Production.dateCreated = dateFormated(Date.now());
+    console.log(vue.Production);
+    makeServerCall('post', '/production/create', vue.Production, (ResultData) => {
+       console.log(ResultData);
+    });
+}

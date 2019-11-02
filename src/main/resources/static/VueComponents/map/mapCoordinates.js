@@ -15,7 +15,7 @@ function initMapCoordinates() {
     // Create new marker on double click event on the map
     google.maps.event.addListener(map, 'click', function (event) {
 
-        productionComponent.Production.GPSCoordinates = event.latLng.lat() + ', ' + event.latLng.lng();
+        productionComponent.Production.GPSCoordinates = `${event.latLng.lat()}, ${event.latLng.lng()}`;
         myLatLng = {lat: event.latLng.lat(), lng: event.latLng.lng()};
 
         let marker = new google.maps.Marker({

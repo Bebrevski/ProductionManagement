@@ -40,8 +40,7 @@ function getNewGuid() {
 /// loading animation
 function loadingShow() {
     $('body').loadingModal({
-        animation: 'fadingCircle',
-        backgroundColor: 'MediumSeaGreen'
+        animation: 'fadingCircle'
     });
 }
 
@@ -177,7 +176,7 @@ function loadingTableHide() {
 
 // used to convert all displayed date and time in requested format
 function dateAndTimeFormated(date) {
-    let convertedDate = moment(date).format('DD.MM.YYYY HH:mm')
+    let convertedDate = moment(date).format('DD.MM.YYYY HH:mm');
     if (convertedDate == "Invalid date") {
         return date;
     }
@@ -186,7 +185,7 @@ function dateAndTimeFormated(date) {
 
 // used to convert all displayed dates in requested format
 function dateFormated(date) {
-    var convertedDate = moment(date).format('DD.MM.YYYY')
+    var convertedDate = moment(date).format('DD.MM.YYYY');
     if (convertedDate == "Invalid date") {
         return date;
     }

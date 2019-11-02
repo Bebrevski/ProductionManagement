@@ -1,14 +1,14 @@
 package com.productionmanagement.web.controller;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.productionmanagement.domain.models.production.ProductionBindingModel;
 import com.productionmanagement.service.ProductionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-@Controller
+@RestController
+@ResponseBody
 @RequestMapping("/production")
 public class ProductionController extends BaseController{
     private final ProductionService productionService;
@@ -19,7 +19,12 @@ public class ProductionController extends BaseController{
     }
 
     @GetMapping("/create")
-    public ModelAndView createProduction(ProductionBindingModel model) {
+    public ModelAndView createProduction() {
+        return super.view("production/add-production");
+    }
+
+    @PostMapping("/create")
+    public ModelAndView submitProduction(@RequestBody ProductionBindingModel model) {
         return super.view("production/add-production");
     }
 }

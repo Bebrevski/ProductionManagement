@@ -1,8 +1,15 @@
 package com.productionmanagement.domain.models.production;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.time.LocalDate;
+
 public class ProductionBindingModel {
+    private String id;
     private String name;
     private String identifyingNumber;
+    private LocalDate dateCreated;
     private String GPSCoordinates;
     private String fullAddress;
     private String description;
@@ -11,6 +18,12 @@ public class ProductionBindingModel {
 
     public ProductionBindingModel() {
     }
+
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId (String id) { this.id = id; }
 
     public String getName() {
         return this.name;
@@ -28,6 +41,16 @@ public class ProductionBindingModel {
         this.identifyingNumber = identifyingNumber;
     }
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
+    public LocalDate getDateCreated() {
+        return this.dateCreated;
+    }
+
+    public void setDateCreated(LocalDate dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    @JsonProperty("GPSCoordinates")
     public String getGPSCoordinates() {
         return this.GPSCoordinates;
     }
@@ -60,6 +83,7 @@ public class ProductionBindingModel {
         this.email = email;
     }
 
+    @JsonProperty("isActive")
     public Boolean getActive() {
         return this.isActive;
     }

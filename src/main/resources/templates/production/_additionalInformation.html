@@ -1,0 +1,32 @@
+<!--suppress ALL -->
+<v-card class="mx-auto card-cursor-default"
+        hover>
+    <v-card-title class="align-end fill-height">
+        <v-toolbar-title class="align-end fill-height">Допълнителна информация</v-toolbar-title>
+        <v-spacer></v-spacer>
+    </v-card-title>
+    <v-card-text>
+        <v-layout row>
+            <v-flex auto md4>
+                <v-text-field v-model="Production.email"
+                              label="Е-мейл на производството">
+                </v-text-field>
+            </v-flex>
+            <v-flex></v-flex>
+            <v-flex auto>
+                <v-checkbox v-model="Production.isActive"
+                            :label="`Производството е активно?: ${Production.isActive ? 'Да' : 'Не'}`">
+                </v-checkbox>
+            </v-flex>
+        </v-layout>
+        <v-layout row>
+            <v-flex auto>
+                <v-textarea v-model="Production.description"
+                            label="Описание"
+                            rows="1"
+                            auto-grow>
+                </v-textarea>
+            </v-flex>
+        </v-layout>
+    </v-card-text>
+</v-card>

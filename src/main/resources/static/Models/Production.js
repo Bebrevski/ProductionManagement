@@ -9,6 +9,7 @@ class Production {
         this.GPSCoordinates = '';
         this.fullAddress = '';
         this.email = '';
-        this.isActive = '';
+        this.description = '';
+        this.isActive = true;
     }
 }
