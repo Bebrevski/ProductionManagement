@@ -17,7 +17,8 @@
             </v-flex>
             <v-flex auto md8>
                 <template v-if="isGPSCoordinates">
-                    <v-text-field v-model="Production.GPSCoordinates"
+                    <v-text-field id="GPSCoordinates"
+                                  v-model="Production.GPSCoordinates"
                                   label="GPS Координати"
                                   required>
                     </v-text-field>
@@ -32,6 +33,4 @@
         </v-layout>
     </v-card-text>
 </v-card>
-<div id="latclicked"></div>
-<div id="longclicked"></div>
 <div id="mapCoordinates"></div>
