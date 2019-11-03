@@ -9,20 +9,30 @@ import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public class BaseEntity {
-    private String id;
+    private int id;
+    private String uuid;
 
     public BaseEntity() {
     }
 
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "id", nullable = false, unique = true, updatable = false)
-    public String getId() {
+    public int getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "uuid", nullable = false, unique = true, updatable = false)
+    public String getUuid() {
+        return this.uuid;
+    }
+
+    public void setUuid(String id) {
+        this.uuid = id;
     }
 }

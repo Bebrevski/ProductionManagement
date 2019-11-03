@@ -30,10 +30,10 @@ var UserAction = {
 };
 
 ///Get new GUID from server
-function getNewGuid() {
-    return axios.post('/Base/NewGuid')
+function getNewUuid() {
+    return axios.get('/base/newUuid')
         .catch(function (error) {
-            console.error("Error while getting new GUID", error);
+            console.error("Error while getting new UUID", error);
         });
 }
 
@@ -53,7 +53,7 @@ const questionToBeDeleted = 'Изтриване на запис?';
 const questionToActivate = 'Желаете ли да активирате задачата?';
 const questionToDeactivate = 'Маркирай като завършена';
 
-const EmptyGuid = "00000000-0000-0000-0000-000000000000";
+const EmptyUuid = "00000000-0000-0000-0000-000000000000";
 
 function getErrorMessages(messagesJSON) {
     try {

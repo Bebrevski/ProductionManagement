@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 public class ProductionModel {
     private String id;
+    private String uuid;
     private String name;
     private String identifyingNumber;
     private LocalDate dateCreated;
@@ -24,6 +25,15 @@ public class ProductionModel {
     }
 
     public void setId (String id) { this.id = id; }
+
+    @JsonProperty("uuid")
+    public String getUuid() {
+        return this.uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
     public String getName() {
         return this.name;

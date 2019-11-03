@@ -2,7 +2,8 @@
 
 class Production {
     constructor() {
-        this.id = '';
+        this.id;
+        this.uuid = '';
         this.name = '';
         this.dateCreated = '';
         this.identifyingNumber = '';

@@ -27,6 +27,6 @@ public class ProductionController extends BaseController {
 
     @PostMapping("/submit")
     public OperationResult<ProductionModel> submitProduction(@RequestBody ProductionModel productionModel) {
-        return productionService.createProduction(productionModel);
+        return productionService.submitProduction(productionModel);
     }
 }
