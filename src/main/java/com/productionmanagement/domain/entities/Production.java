@@ -3,13 +3,13 @@ package com.productionmanagement.domain.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "productions")
 public class Production extends BaseEntity{
     private String name;
-    private LocalDateTime dateCreated;
+    private LocalDate dateCreated;
     private String identifyingNumber;
     private String GPSCoordinates;
     private String fullAddress;
@@ -30,11 +30,11 @@ public class Production extends BaseEntity{
     }
 
     @Column(name = "date_created", nullable = false)
-    public LocalDateTime getDateCreated() {
+    public LocalDate getDateCreated() {
         return this.dateCreated;
     }
 
-    public void setDateCreated(LocalDateTime dateCreated) {
+    public void setDateCreated(LocalDate dateCreated) {
         this.dateCreated = dateCreated;
     }
 

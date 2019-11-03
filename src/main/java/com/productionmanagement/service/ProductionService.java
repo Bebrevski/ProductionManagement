@@ -1,7 +1,8 @@
 package com.productionmanagement.service;
 
-import com.productionmanagement.domain.models.production.ProductionServiceModel;
+import com.productionmanagement.domain.models.production.ProductionModel;
+import com.productionmanagement.helpers.OperationResult;
 
 public interface ProductionService {
-    ProductionServiceModel createProduction(ProductionServiceModel model);
+    OperationResult<ProductionModel> createProduction(ProductionModel production);
 }

@@ -1,8 +1,8 @@
 ﻿/// enums and consts
 var ResultType = {
-    Success: 1,
-    Error: 0,
-    Exception: -1
+    Success: 'Success',
+    Error: 'Error',
+    Exception: 'Exception'
 };
 
 var UserAction = {

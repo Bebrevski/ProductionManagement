@@ -1,9 +1,9 @@
 package com.productionmanagement.helpers;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
 
-public class OperationResult<T> {
+public class OperationResult<T> implements Serializable {
     public ResultType Type;
     public String Message;
     public List<String> AdditionalMessages;
