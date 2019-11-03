@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductionServiceImpl implements ProductionService {
@@ -37,17 +38,29 @@ public class ProductionServiceImpl implements ProductionService {
 
                 if (exists) {
                     //UPDATE
-
+                    return null;
                 } else {
                     //CREATE
+                    result = validateUniqueness(productionModel);
 
+                    if (result.Type != ResultType.Success) return result;
+
+                    return createProduction(productionModel);
                 }
             }
-
-            return null;
         } catch (Exception ex) {
             return OperationResult.Exception(ex);
         }
+    }
+
+    private OperationResult<ProductionModel> createProduction(ProductionModel productionModel) {
+        Production entity = mapper.map(productionModel, Production.class);
+
+        entity = productionRepository.saveAndFlush(entity);
+
+        productionModel = backwardMapping(entity, productionModel);
+
+        return OperationResult.Success(productionModel, "Успешен запис", null);
     }
 
     private OperationResult<ProductionModel> validateProduction(ProductionModel productionModel) {
@@ -65,5 +78,33 @@ public class ProductionServiceImpl implements ProductionService {
         Optional<Production> dbProduction = productionRepository.getByUuid(productionModel.getUuid());
 
         return dbProduction.isEmpty();
+    }
+
+    private OperationResult<ProductionModel> validateUniqueness(ProductionModel productionModel) {
+        List<String> errorMessages = new ArrayList<>();
+
+        List<Production> dbProductions = productionRepository.findAll()
+                .stream()
+                .filter(n -> n.getName().equals(productionModel.getName()))
+                .collect(Collectors.toList());
+
+        if (!dbProductions.isEmpty()) errorMessages.add("Името вече съществува");
+
+        dbProductions = productionRepository.findAll()
+                .stream()
+                .filter(n -> n.getIdentifyingNumber().equals(productionModel.getIdentifyingNumber()))
+                .collect(Collectors.toList());
+
+        if (!dbProductions.isEmpty()) errorMessages.add("Идентификационни номер вече съществува");
+
+        if (!errorMessages.isEmpty())
+            return OperationResult.Error("Невалидни данни!", errorMessages);
+        else
+            return OperationResult.Success();
+    }
+
+    private ProductionModel backwardMapping(Production entity, ProductionModel model) {
+        model = mapper.map(entity, ProductionModel.class);
+        return model;
     }
 }
