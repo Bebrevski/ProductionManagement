@@ -27,7 +27,6 @@ var productionComponent = new Vue({
 
 function handleProductionSubmit(vue) {
     vue.Production.dateCreated = dateFormated(Date.now());
-    console.log(vue.Production);
     makeServerCall('post', '/production/create', vue.Production, (ResultData) => {
        console.log(ResultData);
     });

@@ -249,13 +249,13 @@ border-left-color: #4ca0a5;
 
 #mapCoordinates {
     cursor: default; !important;
-    width: 90%;
-    height: 50%;
+    width: 63%;
+    height: 39%;
     position: absolute; !important;
     overflow: hidden;
-    margin-left: 1.9vw;
     box-shadow: 0 0 31px 5px rgba(0,0,0,.28);
     margin-top: 2vw;
+    margin-left: 12vw;
 }
 
 #map {
