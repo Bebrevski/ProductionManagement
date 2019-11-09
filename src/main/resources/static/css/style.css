@@ -217,19 +217,19 @@ border-left-color: transparent;
 border-left-color: #4ca0a5;
 }
 
-/*.active-navbar > a,*/
-/*.active-navbar > a:focus,*/
-/*.active-navbar > a:hover,*/
-/*.active-navbar > span,*/
-/*.active-navbar > a > i.menu-icon,*/
-/*.active-navbar > a > span::after,*/
-/*.navbar .navbar-nav > .active-navbar > a,*/
-/*.navbar .navbar-nav > .active-navbar > a:focus,*/
-/*.navbar .navbar-nav > .active-navbar > a:hover,*/
-/*.navbar .navbar-nav > .active-navbar > a > i.menu-icon {*/
-/*font-weight: bold !important;*/
-/*color: #fff !important;*/
-/*}*/
+.active-navbar > a,
+.active-navbar > a:focus,
+.active-navbar > a:hover,
+.active-navbar > span,
+.active-navbar > a > i.menu-icon,
+.active-navbar > a > span::after,
+.navbar .navbar-nav > .active-navbar > a,
+.navbar .navbar-nav > .active-navbar > a:focus,
+.navbar .navbar-nav > .active-navbar > a:hover,
+.navbar .navbar-nav > .active-navbar > a > i.menu-icon {
+font-weight: bold !important;
+color: #fff !important;
+}
 
 /*.edit-nom-bttn {*/
 /*color: #277f1c !important;*/
@@ -301,3 +301,7 @@ padding-bottom: 8px;
 /*.application--wrap {*/
 /*min-height: 100% !important;*/
 /*}*/
+
+.v-card__actions {
+    cursor: pointer !important;
+}

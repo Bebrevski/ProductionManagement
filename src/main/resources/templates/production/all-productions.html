@@ -37,7 +37,65 @@
                             <div class="loader"></div>
                         </template>
                         <template v-else>
-                            {{productions}}
+                            <v-data-table :headers="headers"
+                                          :items="productions"
+                                          item-key="id"
+                                          sort-by="name"
+                                          class="elevation-1"
+                                          hide-actions
+                                          show-expand>
+                                <template v-slot:items="props">
+                                    <tr>
+                                        <td class="text-xs-left">
+                                            {{ props.item.name }}
+                                        </td>
+                                        <td class="text-xs-left">
+                                            {{ props.item.identifyingNumber }}
+                                        </td>
+                                        <td class="text-xs-left">
+                                            {{ props.item.email }}
+                                        </td>
+                                        <td class="text-xs-left">
+                                            {{ props.item.fullAddress }}
+                                        </td>
+                                        <td class="text-xs-left">
+                                            {{ props.item.GPSCoordinates }}
+                                        </td>
+                                        <td class="text-xs-left">
+                                            {{ props.item.dateCreated }}
+                                        </td>
+                                        <td class="text-xs-left">
+                                            {{ props.item.description }}
+                                        </td>
+                                        <td>
+                                            <v-card-actions>
+                                                <v-tooltip bottom>
+                                                    <template v-slot:activator="{ on }">
+                                                        <v-icon v-on="on"
+                                                                medium
+                                                                class="mr-2"
+                                                                @@click="editItem(props.item)">
+                                                            edit
+                                                        </v-icon>
+                                                    </template>
+                                                    <span>Редакция</span>
+                                                </v-tooltip>
+                                                <v-tooltip bottom>
+                                                    <template v-slot:activator="{ on }">
+                                                        <v-icon v-on="on"
+                                                                medium
+                                                                class="mr-2"
+                                                                @@click="deleteItem(props.item)">
+                                                            call_split
+                                                        </v-icon>
+                                                    </template>
+                                                    <span>Към база</span>
+                                                </v-tooltip>
+                                            </v-card-actions>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </v-data-table>
                         </template>
                     </v-container>
                 </v-app>
