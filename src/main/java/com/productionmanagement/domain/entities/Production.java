@@ -1,5 +1,7 @@
 package com.productionmanagement.domain.entities;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -7,6 +9,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "productions")
+@DynamicUpdate
 public class Production extends BaseEntity{
     private String name;
     private LocalDate dateCreated;

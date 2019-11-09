@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/production")
 public class ProductionController extends BaseController {
@@ -28,5 +30,15 @@ public class ProductionController extends BaseController {
     @PostMapping("/submit")
     public OperationResult<ProductionModel> submitProduction(@RequestBody ProductionModel productionModel) {
         return productionService.submitProduction(productionModel);
+    }
+
+    @GetMapping("/show-all")
+    public ModelAndView showAllProductions() {
+        return super.view("production/all-productions");
+    }
+
+    @GetMapping("/get-all")
+    public OperationResult<List<ProductionModel>> getAllProductions() {
+        return this.productionService.getAllProductions();
     }
 }

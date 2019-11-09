@@ -28,30 +28,16 @@
 
         <!--Main page content-->
         <div id="content">
-            <div id="view-header"><h3 class="ml-4">Ново производство</h3></div>
+            <div id="view-header"><h3 class="ml-4">Всички производства</h3></div>
             <!-- Vue Component-->
-            <div id="production">
+            <div id="allproductions">
                 <v-app>
                     <v-container>
                         <template v-if="loading">
                             <div class="loader"></div>
                         </template>
                         <template v-else>
-                            <v-form>
-                                <th:block th:insert="~{production/_generalInformation}"/>
-                                <v-divider></v-divider>
-                                <th:block th:insert="~{production/_additionalInformation}"/>
-                                <v-divider></v-divider>
-                                <th:block th:insert="~{production/_location}"/>
-                                <div style="margin-left:42%; margin-top: 585px !important; display:inline-block;">
-                                    <v-btn class="ma-2"
-                                           v-on:click="onProductionSubmit"
-                                           dark>
-                                        <i class="fa fa-save" style="color:white"></i>&nbsp;
-                                        Запази
-                                    </v-btn>
-                                </div>
-                            </v-form>
+                            {{productions}}
                         </template>
                     </v-container>
                 </v-app>
@@ -73,12 +59,7 @@
 
 <!-- Section Scripts -->
 <th:block th:insert="~{fragments/scripts}"></th:block>
-<script th:src="@{/Models/Production.js}"></script>
-<script th:src="@{/VueComponents/production/production.js}"></script>
-<script th:src="@{/VueComponents/map/mapCoordinates.js}"></script>
-<!--<script async defer-->
-<!--src="https://maps.googleapis.com/maps/api/js?key=key-here&callback=initMapCoordinates">-->
-<!--</script>-->
+<script th:src="@{/VueComponents/production/allProduction.js}"></script>
 <!-- Section Scripts -->
 
 </body>

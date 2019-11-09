@@ -77,7 +77,7 @@ public class ProductionServiceImpl implements ProductionService {
     private boolean productionExists(ProductionModel productionModel) {
         Optional<Production> dbProduction = productionRepository.getByUuid(productionModel.getUuid());
 
-        return dbProduction.isEmpty();
+        return !dbProduction.isEmpty();
     }
 
     private OperationResult<ProductionModel> validateUniqueness(ProductionModel productionModel) {
@@ -106,5 +106,15 @@ public class ProductionServiceImpl implements ProductionService {
     private ProductionModel backwardMapping(Production entity, ProductionModel model) {
         model = mapper.map(entity, ProductionModel.class);
         return model;
+    }
+
+    @Override
+    public OperationResult<List<ProductionModel>> getAllProductions() {
+        List<ProductionModel> result = this.productionRepository.findAll()
+                .stream()
+                .map(p -> mapper.map(p, ProductionModel.class))
+                .collect(Collectors.toList());
+
+        return OperationResult.Success(result, "Успешно заредени данни", null);
     }
 }
