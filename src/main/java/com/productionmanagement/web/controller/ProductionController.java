@@ -32,13 +32,35 @@ public class ProductionController extends BaseController {
         return productionService.submitProduction(productionModel);
     }
 
+    @GetMapping("/edit/{uuid}")
+    public ModelAndView editProduction() {
+        return super.view("production/add-production");
+    }
+
     @GetMapping("/show-all")
     public ModelAndView showAllProductions() {
         return super.view("production/all-productions");
     }
 
+    @GetMapping("/view/{uuid}")
+    public ModelAndView productionView(@PathVariable String uuid) {
+        String productionName = this.productionService.getProductionData(uuid).ResultData.getName();
+
+        ModelAndView model = new ModelAndView();
+        model.addObject("productionViewName", productionName);
+
+        return super.view("production/production-view", model);
+    }
+
+    //Get data
     @GetMapping("/get-all")
     public OperationResult<List<ProductionModel>> getAllProductions() {
         return this.productionService.getAllProductions();
     }
+
+    @GetMapping("/get-production-data/{uuid}")
+    public OperationResult<ProductionModel> getProductionData(@PathVariable String uuid) {
+        return this.productionService.getProductionData(uuid);
+    }
+    //End
 }

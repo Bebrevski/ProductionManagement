@@ -74,7 +74,7 @@
                                                         <v-icon v-on="on"
                                                                 medium
                                                                 class="mr-2"
-                                                                @@click="editItem(props.item)">
+                                                                v-on:click="editItem(props.item)">
                                                             edit
                                                         </v-icon>
                                                     </template>
@@ -85,7 +85,7 @@
                                                         <v-icon v-on="on"
                                                                 medium
                                                                 class="mr-2"
-                                                                @@click="deleteItem(props.item)">
+                                                                v-on:click="redirectToProduction(props.item)">
                                                             call_split
                                                         </v-icon>
                                                     </template>

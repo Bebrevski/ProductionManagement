@@ -43,12 +43,20 @@
                                 <th:block th:insert="~{production/_additionalInformation}"/>
                                 <v-divider></v-divider>
                                 <th:block th:insert="~{production/_location}"/>
-                                <div style="margin-left:42%; margin-top: 585px !important; display:inline-block;">
+                                <div style="margin-left:40%; margin-top: 585px !important; display:inline-block;">
                                     <v-btn class="ma-2"
                                            v-on:click="onProductionSubmit"
                                            dark>
                                         <i class="fa fa-save" style="color:white"></i>&nbsp;
                                         Запази
+                                    </v-btn>
+                                    <v-btn v-show="inEditModel"
+                                           class="ma-2"
+                                           v-on:click="redirectToAllProductions"
+                                           color="error"
+                                           dark>
+                                        <i class="fa fa-times" style="color:white"></i>&nbsp;
+                                        Откажи
                                     </v-btn>
                                 </div>
                             </v-form>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+<body>
+<div id="wrapper">
+
+    <!--Sidebar-->
+    <th:block th:insert="~{fragments/navbar}"/>
+    <!--End of Sidebar-->
+
+    <!--Main content-->
+    <div id="content-wrapper" class="flex-column">
+
+        <!-- Topbar -->
+        <th:block th:insert="~{fragments/topbar}"/>
+        <!--End of Topbar-->
+
+        <!--Breadcrumbs GOES HERE-->
+        <ul id="breadcrumb">
+            <li><a><span class="fa fa-home"> </span></a></li>
+
+        </ul>
+        <!--End of Breadcrumbs-->
+
+        <!--Main page content-->
+        <div id="content">
+            <div id="view-header"><h3 class="ml-4" th:text="${productionViewName}">База</h3></div>
+
+            <!-- Vue Components -->
+            <div id="productionInfo">
+                <v-app>
+                    <v-container>
+                        <template v-if="loading">
+                            <div class="loader"></div>
+                        </template>
+                        <template v-else>
+
+                            <div class="col-xl-12 col-xxl-5">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Основни данни</h4>
+                                    </div>
+                                    Some useful content here
+                                </div>
+
+                                <div class="card" id="anotherComponent">
+                                    <v-app style="display:none;"></v-app>
+                                    <div class="card-header">
+                                        Други данни
+                                    </div>
+
+                                    <div class="card-body slow-transition" data-mutant-attributes="height">
+                                        <template v-if="loading">
+                                            <div class="loader"></div>
+                                        </template>
+                                        <template v-else>
+                                            <v-container>
+                                                <fade-transition group>
+
+                                                    <div key="0">
+                                                    </div>
+                                                </fade-transition>
+                                            </v-container>
+                                        </template>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </template>
+                    </v-container>
+                </v-app>
+            </div>
+            <!-- End of Component -->
+        </div>
+        <!-- End of main page content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <th:block th:insert="~{fragments/footer}"/>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!--End of main content-->
+
+</div>
+
+<!-- Section Scripts -->
+<th:block th:insert="~{fragments/scripts}"></th:block>
+<script th:src="@{/VueComponents/production/productionInfo.js}"></script>
+<!-- Section Scripts -->
+
+</body>
+</html>

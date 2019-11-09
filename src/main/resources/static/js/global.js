@@ -174,19 +174,10 @@ function loadingTableHide() {
     $('#result-datatable').loadingModal('destroy');
 }
 
-// used to convert all displayed date and time in requested format
-function dateAndTimeFormated(date) {
-    let convertedDate = moment(date).format('DD.MM.YYYY HH:mm');
-    if (convertedDate == "Invalid date") {
-        return date;
-    }
-    return convertedDate;
-}
-
 // used to convert all displayed dates in requested format
-function dateFormated(date) {
+function dateFormatted(date) {
     var convertedDate = moment(date).format('DD.MM.YYYY');
-    if (convertedDate == "Invalid date") {
+    if (convertedDate === "Invalid date") {
         return date;
     }
     return convertedDate;
@@ -200,7 +191,7 @@ function dateFormater(date) {
         lastWeek: 'DD/MM/YYYY HH:mm',
         sameElse: 'DD/MM/YYYY HH:mm'
     });
-    if (convertedDate == "Invalid date") {
+    if (convertedDate === "Invalid date") {
         return date;
     }
     return convertedDate

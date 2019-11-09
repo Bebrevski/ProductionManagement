@@ -117,4 +117,15 @@ public class ProductionServiceImpl implements ProductionService {
 
         return OperationResult.Success(result, "Успешно заредени данни", null);
     }
+
+    @Override
+    public OperationResult<ProductionModel> getProductionData(String uuid) {
+        Optional<Production> result = this.productionRepository.getByUuid(uuid);
+
+        if (!result.isPresent()) {
+            return OperationResult.Error("Невалиден идентификатор на база!");
+        }
+
+        return OperationResult.Success(this.mapper.map(result.get(), ProductionModel.class), null, null);
+    }
 }

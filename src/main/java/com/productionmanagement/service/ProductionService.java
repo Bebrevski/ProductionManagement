@@ -9,4 +9,6 @@ public interface ProductionService {
     OperationResult<ProductionModel> submitProduction(ProductionModel production);
 
     OperationResult<List<ProductionModel>> getAllProductions();
+
+    OperationResult<ProductionModel> getProductionData(String uuid);
 }

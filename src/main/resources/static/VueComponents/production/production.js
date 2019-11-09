@@ -1,37 +1,59 @@
 var productionComponent = new Vue({
     el: "#production",
     data: {
-        Production: new Production(), //change to null when logic for edit is needed
+        Production: null, //Production model
         loading: true,
-        isGPSCoordinates: true
+        isGPSCoordinates: true,
+        inEditModel: false,
+        page: window.location.pathname.split("/")[2].toUpperCase() // CREATE/EDIT
     },
     created: function () {
         let vue = this;
 
-        getNewUuid().then((res) => {
-            vue.Production.uuid = res.data;
-            this.loading = false;
-        }) ; // will be changed when we have create and edit form
+        if (vue.page === 'CREATE') {
+            vue.Production = new Production();
+
+            getNewUuid().then((res) => {
+                vue.Production.uuid = res.data;
+                this.loading = false;
+            });
+
+        } else { //EDIT
+            let productionUuid = window.location.pathname.split("/").pop();
+            makeServerCall('get', '/production/get-production-data/' + productionUuid, null, (ResultData) => {
+                vue.Production = Object.assign(new Production(), ResultData);
+                vue.inEditModel = true;
+                vue.loading = false;
+            });
+        }
     },
     methods: {
         onProductionSubmit() {
             handleProductionSubmit(this);
+        },
+        redirectToAllProductions() {
+            const link = document.createElement('a');
+            link.href = '/production/show-all';
+            link.click();
         }
     },
     computed: {
         getDate: function () {
             return prodCreatedDate => {
                 if (prodCreatedDate) {
-                    return dateAndTimeFormated(prodCreatedDate);
+                    return dateFormatted(prodCreatedDate);
                 }
-                return dateFormated(Date.now());
+                return dateFormatted(Date.now());
             }
         }
     }
 });
 
 function handleProductionSubmit(vue) {
-    vue.Production.dateCreated = dateFormated(Date.now());
+    vue.Production.dateCreated = dateFormatted(Date.now());
     makeServerCall('post', '/production/submit', vue.Production, (ResultData) => {
+        const link = document.createElement('a');
+        link.href = '/production/show-all';
+        link.click();
     });
 }
