@@ -36,15 +36,14 @@ public class ProductionServiceImpl implements ProductionService {
             } else {
                 boolean exists = productionExists(productionModel);
 
+                result = validateUniqueness(productionModel);
+                if (result.Type != ResultType.Success) return result;
+
                 if (exists) {
                     //UPDATE
-                    return null;
+                    return updateProduction(productionModel);
                 } else {
                     //CREATE
-                    result = validateUniqueness(productionModel);
-
-                    if (result.Type != ResultType.Success) return result;
-
                     return createProduction(productionModel);
                 }
             }
@@ -61,6 +60,12 @@ public class ProductionServiceImpl implements ProductionService {
         productionModel = backwardMapping(entity, productionModel);
 
         return OperationResult.Success(productionModel, "Успешен запис", null);
+    }
+
+    private OperationResult<ProductionModel> updateProduction(ProductionModel productionModel) {
+        Production entity = this.productionRepository.save(mapper.map(productionModel, Production.class));
+
+        return OperationResult.Success(mapper.map(entity, ProductionModel.class), "Успешно променени данни", null);
     }
 
     private OperationResult<ProductionModel> validateProduction(ProductionModel productionModel) {
@@ -85,17 +90,19 @@ public class ProductionServiceImpl implements ProductionService {
 
         List<Production> dbProductions = productionRepository.findAll()
                 .stream()
-                .filter(n -> n.getName().equals(productionModel.getName()))
+                .filter(p -> !p.getUuid().equals(productionModel.getUuid()))
+                .filter(p -> p.getName().equals(productionModel.getName()))
                 .collect(Collectors.toList());
 
         if (!dbProductions.isEmpty()) errorMessages.add("Името вече съществува");
 
         dbProductions = productionRepository.findAll()
                 .stream()
-                .filter(n -> n.getIdentifyingNumber().equals(productionModel.getIdentifyingNumber()))
+                .filter(p -> !p.getUuid().equals(productionModel.getUuid()))
+                .filter(p -> p.getIdentifyingNumber().equals(productionModel.getIdentifyingNumber()))
                 .collect(Collectors.toList());
 
-        if (!dbProductions.isEmpty()) errorMessages.add("Идентификационни номер вече съществува");
+        if (!dbProductions.isEmpty()) errorMessages.add("Идентификационния номер вече съществува");
 
         if (!errorMessages.isEmpty())
             return OperationResult.Error("Невалидни данни!", errorMessages);
