@@ -28,7 +28,7 @@
 
         <!--Main page content-->
         <div id="content">
-            <div id="view-header"><h3 class="ml-4" th:text="${productionViewName}">База</h3></div>
+            <div id="view-header"><h3 class="ml-4" th:text="${productionViewName}"></h3></div>
 
             <!-- Vue Components -->
             <div id="productionInfo">
@@ -44,35 +44,10 @@
                                     <div class="card-header">
                                         <h4>Основни данни</h4>
                                     </div>
-                                    Some useful content here
+                                    <th:block th:insert="~{production/_productionGeneralInfo}"/>
                                 </div>
 
-                                <div class="card" id="anotherComponent">
-                                    <v-app style="display:none;"></v-app>
-                                    <div class="card-header">
-                                        <h4>Други данни</h4>
-                                    </div>
-
-                                    Some useful content here
-
-                                    <div class="card-body slow-transition" data-mutant-attributes="height">
-                                        <template v-if="loading">
-                                            <div class="loader"></div>
-                                        </template>
-                                        <template v-else>
-                                            <v-container>
-                                                <fade-transition group>
-
-                                                    <div key="0">
-                                                    </div>
-                                                </fade-transition>
-                                            </v-container>
-                                        </template>
-
-                                    </div>
-                                </div>
                             </div>
-
                         </template>
                     </v-container>
                 </v-app>

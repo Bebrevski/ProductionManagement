@@ -1,0 +1,56 @@
+<!--suppress ALL -->
+<v-container>
+    <v-layout row wrap>
+        <v-flex auto>
+            <v-text-field v-model="Production.email"
+                          label="Е-мейл"
+                          readonly>
+            </v-text-field>
+        </v-flex>
+        <v-flex auto>
+            <v-text-field v-model="Production.phone"
+                          label="Телефон"
+                          readonly>
+            </v-text-field>
+        </v-flex>
+    </v-layout>
+    <v-layout row wrap>
+        <v-flex auto>
+            <v-text-field v-model="Production.fullAddress"
+                          label="Адрес"
+                          readonly>
+            </v-text-field>
+        </v-flex>
+    </v-layout>
+    <v-layout row wrap>
+        <v-flex auto>
+            <v-textarea v-model="Production.description"
+                        label="Описание"
+                        readonly
+                        rows="1"
+                        auto-grow>
+            </v-textarea>
+        </v-flex>
+    </v-layout>
+    <v-layout row wrap>
+        <v-flex auto md3>
+            <v-text-field v-model="Production.identifyingNumber"
+                          label="Идентификационен номер"
+                          readonly>
+            </v-text-field>
+        </v-flex>
+        <v-flex md1></v-flex>
+        <v-flex align-self-right md1>
+            <v-checkbox v-model="Production.isActive"
+                        color="green"
+                        readonly>
+            </v-checkbox>
+        </v-flex>
+        <v-flex align-self-left md2>
+            <v-text-field v-bind:value="getProductionStatusMessage(Production.isActive)"
+                          label="Статус на базата"
+                          readonly>
+            </v-text-field>
+        </v-flex>
+    </v-layout>
+</v-container>

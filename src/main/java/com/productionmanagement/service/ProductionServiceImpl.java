@@ -34,6 +34,7 @@ public class ProductionServiceImpl implements ProductionService {
             if (result.Type != ResultType.Success) {
                 return result;
             } else {
+
                 boolean exists = productionExists(productionModel);
 
                 result = validateUniqueness(productionModel);
