@@ -28,29 +28,42 @@
 
         <!--Main page content-->
         <div id="content">
-            <div id="view-header"><h3 class="ml-4" th:text="${productionViewName}"></h3></div>
+            <div id="view-header">
+                <h3 class="ml-4" th:text="${productionViewName}"></h3></div>
 
             <!-- Vue Components -->
             <div id="productionInfo">
-                <v-app>
-                    <v-container>
-                        <template v-if="loading">
-                            <div class="loader"></div>
-                        </template>
-                        <template v-else>
-
-                            <div class="col-xl-12 col-xxl-5">
+                <v-container>
+                    <template v-if="loading">
+                        <div class="loader"></div>
+                    </template>
+                    <template v-else>
+                        <div class="row" data-app>
+                            <div class="col-xl-12 col-xxl-5" style="margin-bottom: 30px">
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>Основни данни</h4>
                                     </div>
-                                    <th:block th:insert="~{production/_productionGeneralInfo}"/>
+                                    <div class="card-body">
+                                        <th:block th:insert="~{production/_productionGeneralInfo}"/>
+                                    </div>
                                 </div>
 
                             </div>
-                        </template>
-                    </v-container>
-                </v-app>
+
+                            <div class="col-xl-12 col-xxl-7" style="margin-bottom: 30px">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Допълнителни данни</h4>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <th:block th:insert="~{production/_productionAdditionalInformation}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </v-container>
             </div>
             <!-- End of Component -->
         </div>

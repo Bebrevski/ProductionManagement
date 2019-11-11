@@ -33,24 +33,24 @@
         </v-flex>
     </v-layout>
     <v-layout row wrap>
-        <v-flex auto md3>
+        <v-flex auto md4>
             <v-text-field v-model="Production.identifyingNumber"
                           label="Идентификационен номер"
                           readonly>
             </v-text-field>
         </v-flex>
-        <v-flex md1></v-flex>
+        <v-flex md2></v-flex>
+        <v-flex align-self-left md3>
+            <v-text-field v-bind:value="getProductionStatusMessage(Production.isActive)"
+                          label="Статус на базата"
+                          readonly>
+            </v-text-field>
+        </v-flex>
         <v-flex align-self-right md1>
             <v-checkbox v-model="Production.isActive"
                         color="green"
                         readonly>
             </v-checkbox>
-        </v-flex>
-        <v-flex align-self-left md2>
-            <v-text-field v-bind:value="getProductionStatusMessage(Production.isActive)"
-                          label="Статус на базата"
-                          readonly>
-            </v-text-field>
         </v-flex>
     </v-layout>
 </v-container>
