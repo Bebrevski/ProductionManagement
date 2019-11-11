@@ -15,6 +15,7 @@ public class ProductionModel {
     private String fullAddress;
     private String description;
     private String email;
+    private String phone;
     private Boolean isActive;
 
     public ProductionModel() {
@@ -91,6 +92,14 @@ public class ProductionModel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPhone() {
+        return this.phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     @JsonProperty("isActive")

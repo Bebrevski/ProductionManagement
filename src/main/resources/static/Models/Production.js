@@ -12,5 +12,6 @@ class Production {
         this.email = '';
         this.description = '';
         this.isActive = true;
+        this.phone = '';
     }
 }

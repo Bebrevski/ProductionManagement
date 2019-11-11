@@ -18,6 +18,7 @@ public class Production extends BaseEntity{
     private String fullAddress;
     private String description;
     private String email;
+    private String phone;
     private Boolean isActive;
 
     public Production() {
@@ -84,6 +85,15 @@ public class Production extends BaseEntity{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Column(name = "phone")
+    public String getPhone() {
+        return this.phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     @Column(name = "is_active")
