@@ -8,7 +8,7 @@ import javax.persistence.Table;
 @Table(name = "nomenclatures")
 public class Nomenclature  extends BaseEntity{
     private String tableName;
-    private boolean isVisible;
+    private Boolean isVisible;
     private String titleToBeDisplayed;
     private String connectedTableName;
     private String connectedTableIdColumnName;
@@ -26,11 +26,11 @@ public class Nomenclature  extends BaseEntity{
     }
 
     @Column(name = "is_visible", nullable = false)
-    public boolean isVisible() {
+    public Boolean isVisible() {
         return isVisible;
     }
 
-    public void setVisible(boolean visible) {
+    public void setVisible(Boolean visible) {
         isVisible = visible;
     }
 

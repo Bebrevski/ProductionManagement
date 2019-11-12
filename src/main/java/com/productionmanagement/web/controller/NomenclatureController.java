@@ -1,5 +1,6 @@
 package com.productionmanagement.web.controller;
 
+import com.productionmanagement.domain.models.nomenclature.NomenclatureMetadataModel;
 import com.productionmanagement.domain.models.nomenclature.NomenclatureModel;
 import com.productionmanagement.helpers.OperationResult;
 import com.productionmanagement.service.NomenclatureService;
@@ -31,7 +32,7 @@ public class NomenclatureController extends BaseController {
     Get data
      */
     @GetMapping("/getNomenclatureHeaders")
-    public OperationResult<List<NomenclatureModel>> getNomenclatureHeaders() {
+    public OperationResult<List<NomenclatureMetadataModel>> getNomenclatureHeaders() {
         return nomenclatureService.getNomenclatureHeaders();
     }
 }

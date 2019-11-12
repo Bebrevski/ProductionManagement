@@ -1,6 +1,7 @@
 package com.productionmanagement.domain.entities;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 

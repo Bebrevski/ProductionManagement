@@ -1,7 +1,6 @@
 package com.productionmanagement.service;
 
-import com.productionmanagement.domain.entities.Nomenclature;
-import com.productionmanagement.domain.models.nomenclature.NomenclatureModel;
+import com.productionmanagement.domain.models.nomenclature.NomenclatureMetadataModel;
 import com.productionmanagement.helpers.OperationResult;
 import com.productionmanagement.repository.NomenclatureRepository;
 import org.modelmapper.ModelMapper;
@@ -23,13 +22,12 @@ public class NomenclatureServiceImpl implements NomenclatureService{
     }
 
     @Override
-    public OperationResult<List<NomenclatureModel>> getNomenclatureHeaders() {
-        List<Nomenclature> nomenclatureHeaders =  this.nomenclatureRepository.getNomenclatureHeaders();
-        var some = nomenclatureHeaders
+    public OperationResult<List<NomenclatureMetadataModel>> getNomenclatureHeaders() {
+        List<NomenclatureMetadataModel> nomenclatureHeaders =  this.nomenclatureRepository.findAll()
                 .stream()
-                .map(n -> mapper.map(n, NomenclatureModel.class))
+                .map(n -> mapper.map(n, NomenclatureMetadataModel.class))
                 .collect(Collectors.toList());
 
-        return OperationResult.Success(some, "Успешно заредени данни", null);
+        return OperationResult.Success(nomenclatureHeaders, "Успешно заредени данни", null);
     }
 }
