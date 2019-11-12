@@ -120,6 +120,7 @@ public class ProductionServiceImpl implements ProductionService {
     public OperationResult<List<ProductionModel>> getAllProductions() {
         List<ProductionModel> result = this.productionRepository.findAll()
                 .stream()
+                .filter(Production::getActive)
                 .map(p -> mapper.map(p, ProductionModel.class))
                 .collect(Collectors.toList());
 

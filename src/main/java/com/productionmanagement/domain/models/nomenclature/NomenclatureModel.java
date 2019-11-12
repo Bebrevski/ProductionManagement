@@ -1,22 +1,33 @@
-package com.productionmanagement.domain.entities;
+package com.productionmanagement.domain.models.nomenclature;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "nomenclatures")
-public class Nomenclature  extends BaseEntity{
+public class NomenclatureModel {
+    private int id;
+    private String uuid;
     private String tableName;
     private boolean isVisible;
     private String titleToBeDisplayed;
     private String connectedTableName;
     private String connectedTableIdColumnName;
 
-    public Nomenclature() {
+    public NomenclatureModel() {
     }
 
-    @Column(name = "table_name", nullable = false)
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
     public String getTableName() {
         return tableName;
     }
@@ -25,7 +36,6 @@ public class Nomenclature  extends BaseEntity{
         this.tableName = tableName;
     }
 
-    @Column(name = "is_visible", nullable = false)
     public boolean isVisible() {
         return isVisible;
     }
@@ -34,7 +44,6 @@ public class Nomenclature  extends BaseEntity{
         isVisible = visible;
     }
 
-    @Column(name = "title_to_be_displayed", nullable = false)
     public String getTitleToBeDisplayed() {
         return titleToBeDisplayed;
     }
@@ -43,7 +52,6 @@ public class Nomenclature  extends BaseEntity{
         this.titleToBeDisplayed = titleToBeDisplayed;
     }
 
-    @Column(name = "connected_table_name", nullable = false)
     public String getConnectedTableName() {
         return connectedTableName;
     }
@@ -52,7 +60,6 @@ public class Nomenclature  extends BaseEntity{
         this.connectedTableName = connectedTableName;
     }
 
-    @Column(name = "connected_table_ID_column_name", nullable = false)
     public String getConnectedTableIdColumnName() {
         return connectedTableIdColumnName;
     }

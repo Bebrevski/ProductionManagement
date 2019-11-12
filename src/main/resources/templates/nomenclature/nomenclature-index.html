@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+<body>
+<div id="wrapper">
+
+    <!--SideBar-->
+    <th:block th:insert="~{fragments/navbar}"/>
+    <!--End of SideBar-->
+
+    <!--Main content-->
+    <div id="content-wrapper" class="flex-column">
+
+        <!-- Topbar -->
+        <th:block th:insert="~{fragments/topbar}"/>
+        <!--End of Topbar-->
+
+        <!--Breadcrumbs GOES HERE-->
+        <ul id="breadcrumb">
+            <li><a><span class="fa fa-home"> </span></a></li>
+
+        </ul>
+        <!--End of Breadcrumbs-->
+
+        <!--Main content-->
+        <div id="content">
+            <div id="view-header"><h3 class="ml-4">Номенклатури</h3></div>
+
+            <!-- Vue Components -->
+            <v-app data-app>
+                <div id="nomenclaturetabs">
+                    <template v-if="loading">
+                        <div class="loader"></div>
+                    </template>
+                    <template v-else>
+                        <v-tabs v-model="tab" align-with-title show-arrows>
+                            <v-tabs-slider color="#262626"></v-tabs-slider>
+                            <v-tab v-for="(header, index) in nomenclatureHeaders" key="index" ripple centered>
+                                {{header.titleToBeDisplayed}}
+                            </v-tab>
+                        </v-tabs>
+                    </template>
+                </div>
+            </v-app>
+            <!-- End of component-->
+
+        </div>
+        <!--End of Main content-->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <th:block th:insert="~{fragments/footer}"/>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!--End of main content-->
+
+</div>
+
+<th:block th:insert="~{fragments/scripts}"></th:block>
+<script th:src="@{/VueComponents/nomenclature/nomenclatureTabs.js}"></script>
+</body>
+</html>
