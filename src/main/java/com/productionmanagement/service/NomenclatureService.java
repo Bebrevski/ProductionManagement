@@ -10,4 +10,6 @@ public interface NomenclatureService {
     OperationResult<List<NomenclatureMetadataModel>> getNomenclatureHeaders();
 
     OperationResult<List<NomenclatureModel>> getNomenclatureItems(int nomenclatureId);
+
+    OperationResult<NomenclatureModel> submitNomenclature(NomenclatureModel nomenclatureModel);
 }

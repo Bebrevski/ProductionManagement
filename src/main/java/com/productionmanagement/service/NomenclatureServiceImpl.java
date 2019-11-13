@@ -3,7 +3,9 @@ package com.productionmanagement.service;
 import com.productionmanagement.domain.models.nomenclature.NomenclatureMetadataModel;
 import com.productionmanagement.domain.models.nomenclature.NomenclatureModel;
 import com.productionmanagement.factories.DbConnection;
+import com.productionmanagement.helpers.BusinessException;
 import com.productionmanagement.helpers.OperationResult;
+import com.productionmanagement.helpers.ResultType;
 import com.productionmanagement.repository.NomenclatureRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,13 +49,32 @@ public class NomenclatureServiceImpl implements NomenclatureService {
 
         String query = String.format("SELECT * FROM %s AS t ORDER BY t.name ASC", tableName);
 
-        try{
+        try {
             PreparedStatement statement = DbConnection.getConnection().prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
 
             return OperationResult.Success(toList(resultSet), "Успешно заредени данни.", null);
 
-        } catch (Exception ex){
+        } catch (Exception ex) {
+            return OperationResult.Exception(ex);
+        }
+    }
+
+    @Override
+    public OperationResult<NomenclatureModel> submitNomenclature(NomenclatureModel nomenclatureItem) {
+        OperationResult<NomenclatureModel> result;
+
+        try {
+            result = validateNomenclature(nomenclatureItem);
+
+            if (result.Type != ResultType.Success) {
+                return result;
+            } else {
+
+            }
+
+            return null;
+        } catch (Exception ex) {
             return OperationResult.Exception(ex);
         }
     }
@@ -71,5 +92,18 @@ public class NomenclatureServiceImpl implements NomenclatureService {
         }
 
         return result;
+    }
+
+    private OperationResult<NomenclatureModel> validateNomenclature(NomenclatureModel nomenclatureItem) throws BusinessException {
+        List<String> errorMessages = new ArrayList<>();
+
+        if (nomenclatureItem.getUuid().isEmpty()) throw new BusinessException("Невалиден уникален идентификатор");
+
+        if (nomenclatureItem.getName().isEmpty()) errorMessages.add("Невалидно име на номенклатура");
+
+        if (!errorMessages.isEmpty())
+            return OperationResult.Error("Невалидни данни", errorMessages);
+        else
+            return OperationResult.Success();
     }
 }

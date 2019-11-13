@@ -42,7 +42,7 @@ public class NomenclatureController extends BaseController {
     }
 
     @PostMapping("/removeNomenclature")
-    public OperationResult<NomenclatureModel> removeNomenclature(@RequestBody NomenclatureModel nomenclatureModel) {
+    public OperationResult<NomenclatureModel> removeNomenclature(@RequestBody NomenclatureModel nomenclatureItem) {
         return null;
     }
 }
