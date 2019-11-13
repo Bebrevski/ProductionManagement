@@ -5,10 +5,7 @@ import com.productionmanagement.domain.models.nomenclature.NomenclatureModel;
 import com.productionmanagement.helpers.OperationResult;
 import com.productionmanagement.service.NomenclatureService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -37,5 +34,15 @@ public class NomenclatureController extends BaseController {
     @GetMapping("/getNomenclatureItems/{nomenclatureId}")
     public OperationResult<List<NomenclatureModel>> getNomenclatureItems(@PathVariable int nomenclatureId) {
             return this.nomenclatureService.getNomenclatureItems(nomenclatureId);
+    }
+
+    @PostMapping("/submitNomenclature")
+    public OperationResult<NomenclatureModel> submitNomenclature(@RequestBody NomenclatureModel nomenclatureModel) {
+        return null;
+    }
+
+    @PostMapping("/removeNomenclature")
+    public OperationResult<NomenclatureModel> removeNomenclature(@RequestBody NomenclatureModel nomenclatureModel) {
+        return null;
     }
 }

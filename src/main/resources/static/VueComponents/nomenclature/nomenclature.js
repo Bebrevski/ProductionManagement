@@ -1,4 +1,5 @@
 var dropdownComponent = Vue.component('nomenclature', {
+    template: '#movie-template',
     props: {
         id: Number
     },
@@ -20,24 +21,24 @@ var dropdownComponent = Vue.component('nomenclature', {
         },
         onCreateNomenclature: function () {
             let newNomenclatureItem = new Nomenclature();
-            newNomenclatureItem.InEditMode = true;
-            getNewGuid().then((guid) => newNomenclatureItem.GUID = guid.data);
+            newNomenclatureItem.inEditMode = true;
+            getNewUuid().then((uuid) => newNomenclatureItem.uuid = uuid.data);
             this.nomenclatureRows.unshift(newNomenclatureItem);
         },
         onEditNomenclature: function (nomenclatureItem) {
-            this.objectBackups[nomenclatureItem.GUID] = copyObject(nomenclatureItem);
-            nomenclatureItem.InEditMode = true;
+            this.objectBackups[nomenclatureItem.uuid] = copyObject(nomenclatureItem);
+            nomenclatureItem.inEditMode = true;
             this.$forceUpdate();
         },
         onCancelEditNomenclature: function (index) {
-            const nGuid = this.nomenclatureRows[index].GUID;
-            this.nomenclatureRows[index].InEditMode = false;
+            const nUuid= this.nomenclatureRows[index].uuid;
+            this.nomenclatureRows[index].inEditMode = false;
 
-            if (this.objectBackups[nGuid] === undefined) {
+            if (this.objectBackups[nUuid] === undefined) {
                 this.nomenclatureRows.splice(index, 1);
             } else {
-                for (let prop in this.objectBackups[nGuid]) {
-                    this.nomenclatureRows[index][prop] = this.objectBackups[nGuid][prop];
+                for (let prop in this.objectBackups[nUuid]) {
+                    this.nomenclatureRows[index][prop] = this.objectBackups[nUuid][prop];
                 }
             }
         },
@@ -48,17 +49,11 @@ var dropdownComponent = Vue.component('nomenclature', {
         onRemoveNomenclature: function (index) {
             let vue = this;
             handleRemoveNomenclature(vue, index);
-        },
-    },
-    computed: {
-        getUniqueKey: function () {
-            return Math.random().toString();
         }
     }
 });
 
 function getDataForNomenclature(vue, nomenclatureID) {
-    console.log(nomenclatureID);
     makeServerCall('get', '/nomenclature/getNomenclatureItems/' + nomenclatureID, null, (ResultData) => {
         let temp = [];
 
@@ -68,18 +63,18 @@ function getDataForNomenclature(vue, nomenclatureID) {
 
         vue.nomenclatureRows = temp;
 
-        setTimeout(() => { vue.loading = false; }, 1000);
+        vue.dataIsLoaded = true;
     });
 }
 
 function handleSave(vue, nomenclatureItem, index) {
-    nomenclatureItem.NomenclatureID = vue.id;
+    nomenclatureItem.nomenclatureID = vue.id;
 
-    makeServerCall('post', '/Nomenclature/SubmitNomenclature', nomenclatureItem, (ResultData) => {
+    makeServerCall('post', '/nomenclature/submitNomenclature', nomenclatureItem, (ResultData) => {
         let savedNomenclatureItem = ResultData;
 
         nomenclatureItem.uuid = savedNomenclatureItem.uuid;
-        vue.nomenclatureRows[index].isActive = savedNomenclatureItem.isActive;
+        vue.nomenclatureRows[index].active = savedNomenclatureItem.active;
         nomenclatureItem.inEditMode = false;
     });
 }
@@ -88,9 +83,9 @@ function handleRemoveNomenclature(vue, index) {
     promptActionConfirmation(questionToBeDeleted, () => {
 
         let nomenclatureItemToBeRemoved = vue.nomenclatureRows[index];
-        nomenclatureItemToBeRemoved.nomenclatureID = vue.id;
+        nomenclatureItemToBeRemoved.id = vue.id;
 
-        if (nomenclatureItemToBeRemoved.GUID !== '') {
+        if (nomenclatureItemToBeRemoved.uuid !== '') {
             makeServerCall('post', '/nomenclature/removeNomenclature', nomenclatureItemToBeRemoved, (ResultData) => {
                 vue.nomenclatureRows.splice(index, 1);
             });

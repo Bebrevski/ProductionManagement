@@ -2,13 +2,17 @@ package com.productionmanagement.service;
 
 import com.productionmanagement.domain.models.nomenclature.NomenclatureMetadataModel;
 import com.productionmanagement.domain.models.nomenclature.NomenclatureModel;
+import com.productionmanagement.factories.DbConnection;
 import com.productionmanagement.helpers.OperationResult;
 import com.productionmanagement.repository.NomenclatureRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.management.Query;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,7 +35,7 @@ public class NomenclatureServiceImpl implements NomenclatureService {
                     .map(n -> mapper.map(n, NomenclatureMetadataModel.class))
                     .collect(Collectors.toList());
 
-            return OperationResult.Success(nomenclatureHeaders, "Успешно заредени данни", null);
+            return OperationResult.Success(nomenclatureHeaders, null, null);
         } catch (Exception ex) {
             return OperationResult.Exception(ex);
         }
@@ -41,9 +45,31 @@ public class NomenclatureServiceImpl implements NomenclatureService {
     public OperationResult<List<NomenclatureModel>> getNomenclatureItems(int nomenclatureId) {
         String tableName = this.nomenclatureRepository.getNomenclatureTableName(nomenclatureId);
 
-        
+        String query = String.format("SELECT * FROM %s AS t ORDER BY t.name ASC", tableName);
 
-        //List<NomenclatureModel> items = this.nomenclatureRepository.getNomenclatureItems(tableName);
-        return null;
+        try{
+            PreparedStatement statement = DbConnection.getConnection().prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+
+            return OperationResult.Success(toList(resultSet), "Успешно заредени данни.", null);
+
+        } catch (Exception ex){
+            return OperationResult.Exception(ex);
+        }
+    }
+
+    private List<NomenclatureModel> toList(ResultSet resultSet) throws SQLException {
+        List<NomenclatureModel> result = new ArrayList<>();
+
+        while (resultSet.next()) {
+            NomenclatureModel model = new NomenclatureModel();
+            model.setId(resultSet.getInt("id"));
+            model.setUuid(resultSet.getString("uuid"));
+            model.setName(resultSet.getString("name"));
+            model.setActive(resultSet.getBoolean("is_active"));
+            result.add(model);
+        }
+
+        return result;
     }
 }
