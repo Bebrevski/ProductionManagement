@@ -43,6 +43,42 @@
                                 {{header.titleToBeDisplayed}}
                             </v-tab>
                         </v-tabs>
+                        <v-tabs-items v-model="tab">
+                            <v-tab-item v-for="(nom, index) in nomenclatureHeaders" key="index" :transition="false" :reverse-transition="false">
+                                <nomenclature inline-template :id="nom.id">
+                                    <div class="card-body">
+                                        <template v-if="!dataIsLoaded">
+                                            <div class="loader"></div>
+                                        </template>
+                                        <template v-else>
+                                            <v-card flat>
+                                                <v-card-text>
+                                                    <v-container>
+                                                        <v-layout row wrap xs12>
+                                                            <v-flex auto>
+                                                                <v-btn v-on:click="onCreateNomenclature" color="primary" dark class="mb-2"><v-icon small>fa fa-edit</v-icon>&nbsp;Добави</v-btn>
+                                                            </v-flex>
+                                                        </v-layout>
+                                                        <hr />
+                                                        <div v-for="(model, index) in nomenclatureRows" key="index">
+                                                            <template v-if="model.inEditMode">
+                                                                <th:block th:insert="~{nomenclature/_editNomenclature.html}"/>
+                                                                <hr />
+                                                            </template>
+                                                            <template v-else>
+                                                                <th:block th:insert="~{nomenclature/_viewNomenclature.html}"/>
+                                                                <hr />
+                                                            </template>
+                                                        </div>
+                                                        <div :key=getUniqueKey></div>
+                                                    </v-container>
+                                                </v-card-text>
+                                            </v-card>
+                                        </template>
+                                    </div>
+                                </nomenclature>
+                            </v-tab-item>
+                        </v-tabs-items>
                     </template>
                 </div>
             </v-app>
@@ -63,6 +99,7 @@
 </div>
 
 <th:block th:insert="~{fragments/scripts}"></th:block>
+<script th:src="@{/VueComponents/nomenclature/nomenclature.js}"></script>
 <script th:src="@{/VueComponents/nomenclature/nomenclatureTabs.js}"></script>
 </body>
 </html>

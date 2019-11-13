@@ -3,11 +3,8 @@ package com.productionmanagement.domain.models.nomenclature;
 public class NomenclatureModel {
     private int id;
     private String uuid;
-    private String tableName;
-    private boolean isVisible;
-    private String titleToBeDisplayed;
-    private String connectedTableName;
-    private String connectedTableIdColumnName;
+    private String name;
+    private boolean isActive;
 
     public NomenclatureModel() {
     }
@@ -28,43 +25,19 @@ public class NomenclatureModel {
         this.uuid = uuid;
     }
 
-    public String getTableName() {
-        return tableName;
+    public String getName() {
+        return name;
     }
 
-    public void setTableName(String tableName) {
-        this.tableName = tableName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public boolean isVisible() {
-        return isVisible;
+    public boolean isActive() {
+        return isActive;
     }
 
-    public void setVisible(boolean visible) {
-        isVisible = visible;
-    }
-
-    public String getTitleToBeDisplayed() {
-        return titleToBeDisplayed;
-    }
-
-    public void setTitleToBeDisplayed(String titleToBeDisplayed) {
-        this.titleToBeDisplayed = titleToBeDisplayed;
-    }
-
-    public String getConnectedTableName() {
-        return connectedTableName;
-    }
-
-    public void setConnectedTableName(String connectedTableName) {
-        this.connectedTableName = connectedTableName;
-    }
-
-    public String getConnectedTableIdColumnName() {
-        return connectedTableIdColumnName;
-    }
-
-    public void setConnectedTableIdColumnName(String connectedTableIdColumnName) {
-        this.connectedTableIdColumnName = connectedTableIdColumnName;
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }

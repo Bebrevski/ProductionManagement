@@ -1,0 +1,37 @@
+<v-layout row>
+    <v-card width="100%"
+            color="#eff4f9"
+            raised
+            hover>
+        <v-container py-1>
+            <v-layout row>
+                <v-flex xs4>
+                    <p style="margin-top: 20px">&nbsp;{{model.name}}</p>
+                </v-flex>
+                <v-flex xs4>
+                    <v-switch v-model="model.IsActive"
+                              readonly
+                              v-bind:label="`Активна номенклатура: ${model.isActive ? 'Да':'Не'}`"
+                              disabled>
+                    </v-switch>
+                </v-flex>
+                <v-flex xs3>
+                    <v-btn icon
+                           v-on:click="onEditNomenclature(model, index)"
+                           type="button"
+                           class="btn btn-sm btn-outline-secondary"
+                           title="Редактирай">
+                        <i class="fa fa-pencil"></i>
+                    </v-btn>
+                    <v-btn icon
+                           v-on:click="onRemoveNomenclature(index)"
+                           type="button"
+                           class="btn btn-sm btn-outline-secondary"
+                           title="Изтрий">
+                        <i class="fa fa-trash-o"></i>
+                    </v-btn>
+                </v-flex>
+            </v-layout>
+        </v-container>
+    </v-card>
+</v-layout>

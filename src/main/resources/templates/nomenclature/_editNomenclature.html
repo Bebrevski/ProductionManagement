@@ -1,0 +1,25 @@
+<v-spacer></v-spacer>
+<v-layout row>
+    <v-card width="100%" style="background-color: #e5edf5">
+        <v-container fluid>
+            <v-layout row>
+                <v-flex xs12 md4 pa-2>
+                    <v-text-field v-model="model.name"
+                                  label="Име">
+                    </v-text-field>
+                </v-flex>
+                <v-flex xs6 md4>
+                    <v-switch v-model="model.IsActive"
+                              v-bind:label="`Активна номенклатура: ${model.isActive ? 'Да':'Не'}`">
+                    </v-switch>
+                </v-flex>
+                <v-flex xs12 md2>
+                    <v-btn icon v-on:click="onSaveNomenclature(model, index)" type="button" class="btn btn-sm btn-outline-secondary" title="Запази промените"><i class="fa fa-save"></i></v-btn>
+                    <v-btn icon v-on:click="onCancelEditNomenclature(index)" type="button" class="btn btn-sm btn-outline-secondary" title="Откажи промените"><i class="fa fa-close"></i></v-btn>
+                    <v-btn icon v-on:click="onRemoveNomenclature(index)" type="button" class="btn btn-sm btn-outline-secondary" title="Изтрий"><i class="fa fa-trash-o"></i></v-btn>
+                </v-flex>
+            </v-layout>
+        </v-container>
+    </v-card>
+</v-layout>
+

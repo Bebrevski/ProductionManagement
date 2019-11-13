@@ -118,23 +118,31 @@ public class ProductionServiceImpl implements ProductionService {
 
     @Override
     public OperationResult<List<ProductionModel>> getAllProductions() {
-        List<ProductionModel> result = this.productionRepository.findAll()
-                .stream()
-                .filter(Production::getActive)
-                .map(p -> mapper.map(p, ProductionModel.class))
-                .collect(Collectors.toList());
+        try {
+            List<ProductionModel> result = this.productionRepository.findAll()
+                    .stream()
+                    .filter(Production::getActive)
+                    .map(p -> mapper.map(p, ProductionModel.class))
+                    .collect(Collectors.toList());
 
-        return OperationResult.Success(result, "Успешно заредени данни", null);
+            return OperationResult.Success(result, "Успешно заредени данни", null);
+        } catch (Exception ex) {
+            return OperationResult.Exception(ex);
+        }
     }
 
     @Override
     public OperationResult<ProductionModel> getProductionData(String uuid) {
-        Optional<Production> result = this.productionRepository.getByUuid(uuid);
+        try {
+            Optional<Production> result = this.productionRepository.getByUuid(uuid);
 
-        if (!result.isPresent()) {
-            return OperationResult.Error("Невалиден идентификатор на база!");
+            if (!result.isPresent()) {
+                return OperationResult.Error("Невалиден идентификатор на база!");
+            }
+
+            return OperationResult.Success(this.mapper.map(result.get(), ProductionModel.class), null, null);
+        } catch (Exception ex) {
+            return OperationResult.Exception(ex);
         }
-
-        return OperationResult.Success(this.mapper.map(result.get(), ProductionModel.class), null, null);
     }
 }

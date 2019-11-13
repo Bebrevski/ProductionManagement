@@ -14,7 +14,6 @@ var nomenclatureTabs = new Vue({
 
 function getNomenclatureHeaders(vue) {
     makeServerCall('get', '/nomenclature/getNomenclatureHeaders', null, (ResultData) => {
-        console.log(ResultData);
         vue.nomenclatureHeaders = ResultData;
         vue.loading = false;
     });

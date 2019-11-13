@@ -6,6 +6,7 @@ import com.productionmanagement.helpers.OperationResult;
 import com.productionmanagement.service.NomenclatureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,11 +29,13 @@ public class NomenclatureController extends BaseController {
         return super.view("nomenclature/nomenclature-index");
     }
 
-    /*
-    Get data
-     */
     @GetMapping("/getNomenclatureHeaders")
     public OperationResult<List<NomenclatureMetadataModel>> getNomenclatureHeaders() {
-        return nomenclatureService.getNomenclatureHeaders();
+        return this.nomenclatureService.getNomenclatureHeaders();
+    }
+
+    @GetMapping("/getNomenclatureItems/{nomenclatureId}")
+    public OperationResult<List<NomenclatureModel>> getNomenclatureItems(@PathVariable int nomenclatureId) {
+            return this.nomenclatureService.getNomenclatureItems(nomenclatureId);
     }
 }
