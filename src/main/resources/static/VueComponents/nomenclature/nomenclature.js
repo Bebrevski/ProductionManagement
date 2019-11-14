@@ -83,7 +83,7 @@ function handleRemoveNomenclature(vue, index) {
     promptActionConfirmation(questionToBeDeleted, () => {
 
         let nomenclatureItemToBeRemoved = vue.nomenclatureRows[index];
-        nomenclatureItemToBeRemoved.id = vue.id;
+        nomenclatureItemToBeRemoved.nomenclatureID = vue.id;
 
         if (nomenclatureItemToBeRemoved.uuid !== '') {
             makeServerCall('post', '/nomenclature/removeNomenclature', nomenclatureItemToBeRemoved, (ResultData) => {

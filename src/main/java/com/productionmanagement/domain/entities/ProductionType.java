@@ -8,7 +8,6 @@ import java.util.List;
 public class ProductionType extends BaseEntity{
     private String name;
     private boolean isActive;
-    private List<Production> productions;
 
     public ProductionType() {
     }
@@ -29,15 +28,5 @@ public class ProductionType extends BaseEntity{
 
     public void setActive(boolean active) {
         isActive = active;
-    }
-
-    @ManyToOne(targetEntity = Production.class)
-    @JoinColumn(name = "production_id", referencedColumnName = "id")
-    public List<Production> getProductions() {
-        return productions;
-    }
-
-    public void setProductions(List<Production> productions) {
-        this.productions = productions;
     }
 }

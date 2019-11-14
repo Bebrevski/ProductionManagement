@@ -11,5 +11,7 @@ public interface NomenclatureService {
 
     OperationResult<List<NomenclatureModel>> getNomenclatureItems(int nomenclatureId);
 
-    OperationResult<NomenclatureModel> submitNomenclature(NomenclatureModel nomenclatureModel);
+    OperationResult<NomenclatureModel> submitNomenclature(NomenclatureModel nomenclatureItem);
+
+    OperationResult<NomenclatureModel> removeNomenclature(NomenclatureModel nomenclatureItem);
 }

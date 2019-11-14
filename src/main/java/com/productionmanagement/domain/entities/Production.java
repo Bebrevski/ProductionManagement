@@ -2,9 +2,7 @@ package com.productionmanagement.domain.entities;
 
 import org.hibernate.annotations.DynamicUpdate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -20,6 +18,7 @@ public class Production extends BaseEntity{
     private String email;
     private String phone;
     private Boolean isActive;
+    private ProductionType productionTypeId;
 
     public Production() {
     }
@@ -103,5 +102,15 @@ public class Production extends BaseEntity{
 
     public void setActive(Boolean active) {
         isActive = active;
+    }
+
+    @ManyToOne(targetEntity = ProductionType.class)
+    @JoinColumn(name="production_type_id", referencedColumnName = "id")
+    public ProductionType getProductionType() {
+        return productionTypeId;
+    }
+
+    public void setProductionType(ProductionType productionTypeId) {
+        this.productionTypeId = productionTypeId;
     }
 }

@@ -37,12 +37,12 @@ public class NomenclatureController extends BaseController {
     }
 
     @PostMapping("/submitNomenclature")
-    public OperationResult<NomenclatureModel> submitNomenclature(@RequestBody NomenclatureModel nomenclatureModel) {
-        return null;
+    public OperationResult<NomenclatureModel> submitNomenclature(@RequestBody NomenclatureModel nomenclatureItem) {
+        return this.nomenclatureService.submitNomenclature(nomenclatureItem);
     }
 
     @PostMapping("/removeNomenclature")
     public OperationResult<NomenclatureModel> removeNomenclature(@RequestBody NomenclatureModel nomenclatureItem) {
-        return null;
+        return this.nomenclatureService.removeNomenclature(nomenclatureItem);
     }
 }
