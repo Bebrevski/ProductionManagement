@@ -19,4 +19,42 @@
     <v-tab :key="6" ripple centered>
         История
     </v-tab>
+    <v-tabs-items>
+        <v-tab-item :key="1" :transition="false" :reverse-transition="false">
+            <manufactury inline-template>
+                <div class="card-body">
+                    <template v-if="!manufacturyDataIsLoaded">
+                        <div class="loader"></div>
+                    </template>
+                    <template v-else>
+                        Manufactury
+                    </template>
+                </div>
+            </manufactury>
+        </v-tab-item>
+        <v-tab-item :key="2" :transition="false" :reverse-transition="false">
+            <inventory inline-template>
+                <div class="card-body">
+                    <template v-if="!inventoryDataIsLoaded">
+                        <div class="loader"></div>
+                    </template>
+                    <template v-else>
+                        Inventory
+                    </template>
+                </div>
+            </inventory>
+        </v-tab-item>
+        <v-tab-item :key="3" :transition="false" :reverse-transition="false">
+            <stock inline-template>
+                <div class="card-body">
+                    <template v-if="!stockDataIsLoaded">
+                        <div class="loader"></div>
+                    </template>
+                    <template v-else>
+                        Stock
+                    </template>
+                </div>
+            </stock>
+        </v-tab-item>
+    </v-tabs-items>
 </v-tabs>

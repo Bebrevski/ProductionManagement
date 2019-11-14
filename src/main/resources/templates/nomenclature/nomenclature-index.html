@@ -33,52 +33,60 @@
             <!-- Vue Components -->
             <v-app data-app>
                 <div id="nomenclaturetabs">
-                    <template v-if="loading">
-                        <div class="loader"></div>
-                    </template>
-                    <template v-else>
-                        <v-tabs v-model="tab" align-with-title show-arrows>
-                            <v-tabs-slider color="#262626"></v-tabs-slider>
-                            <v-tab v-for="(header, index) in nomenclatureHeaders" :key=index ripple centered>
-                                {{header.titleToBeDisplayed}}
-                            </v-tab>
-                        </v-tabs>
-                        <v-tabs-items v-model="tab">
-                            <v-tab-item v-for="(nom, index) in nomenclatureHeaders" :key=index :transition="false" :reverse-transition="false">
-                                <nomenclature inline-template :id="nom.id">
-                                    <div class="card-body">
-                                        <template v-if="!dataIsLoaded">
-                                            <div class="loader"></div>
-                                        </template>
-                                        <template v-else>
-                                            <v-card flat>
-                                                <v-card-text>
-                                                    <v-container>
-                                                        <v-layout row wrap xs12>
-                                                            <v-flex auto>
-                                                                <v-btn v-on:click="onCreateNomenclature" dark class="mb-2"><v-icon small>fa fa-edit</v-icon>&nbsp;Добави</v-btn>
-                                                            </v-flex>
-                                                        </v-layout>
-                                                        <hr />
-                                                        <div v-for="(model, ind) in nomenclatureRows" :key=ind>
-                                                            <template v-if="model.inEditMode">
-                                                                <th:block th:insert="~{nomenclature/_editNomenclature.html}"/>
-                                                                <hr />
-                                                            </template>
-                                                            <template v-else>
-                                                                <th:block th:insert="~{nomenclature/_viewNomenclature.html}"/>
-                                                                <hr />
-                                                            </template>
-                                                        </div>
-                                                    </v-container>
-                                                </v-card-text>
-                                            </v-card>
-                                        </template>
-                                    </div>
-                                </nomenclature>
-                            </v-tab-item>
-                        </v-tabs-items>
-                    </template>
+                    <v-app>
+                        <template v-if="loading">
+                            <div class="loader"></div>
+                        </template>
+                        <template v-else>
+                            <v-tabs v-model="tab" align-with-title show-arrows>
+                                <v-tabs-slider color="#262626"></v-tabs-slider>
+                                <v-tab v-for="(header, index) in nomenclatureHeaders" :key=index ripple centered>
+                                    {{header.titleToBeDisplayed}}
+                                </v-tab>
+                            </v-tabs>
+                            <v-tabs-items v-model="tab">
+                                <v-tab-item v-for="(nom, index) in nomenclatureHeaders" :key=index :transition="false"
+                                            :reverse-transition="false">
+                                    <nomenclature inline-template :id="nom.id">
+                                        <div class="card-body">
+                                            <template v-if="!dataIsLoaded">
+                                                <div class="loader"></div>
+                                            </template>
+                                            <template v-else>
+                                                <v-card flat>
+                                                    <v-card-text>
+                                                        <v-container>
+                                                            <v-layout row wrap xs12>
+                                                                <v-flex auto>
+                                                                    <v-btn v-on:click="onCreateNomenclature" dark
+                                                                           class="mb-2">
+                                                                        <v-icon small>fa fa-edit</v-icon>&nbsp;Добави
+                                                                    </v-btn>
+                                                                </v-flex>
+                                                            </v-layout>
+                                                            <hr/>
+                                                            <div v-for="(model, ind) in nomenclatureRows" :key=ind>
+                                                                <template v-if="model.inEditMode">
+                                                                    <th:block
+                                                                            th:insert="~{nomenclature/_editNomenclature.html}"/>
+                                                                    <hr/>
+                                                                </template>
+                                                                <template v-else>
+                                                                    <th:block
+                                                                            th:insert="~{nomenclature/_viewNomenclature.html}"/>
+                                                                    <hr/>
+                                                                </template>
+                                                            </div>
+                                                        </v-container>
+                                                    </v-card-text>
+                                                </v-card>
+                                            </template>
+                                        </div>
+                                    </nomenclature>
+                                </v-tab-item>
+                            </v-tabs-items>
+                        </template>
+                    </v-app>
                 </div>
             </v-app>
             <!-- End of component-->

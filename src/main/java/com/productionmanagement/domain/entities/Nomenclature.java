@@ -1,11 +1,14 @@
 package com.productionmanagement.domain.entities;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "nomenclatures")
+@DynamicUpdate
 public class Nomenclature  extends BaseEntity{
     private String tableName;
     private Boolean isVisible;

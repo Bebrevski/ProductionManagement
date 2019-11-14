@@ -2,16 +2,18 @@ package com.productionmanagement.domain.entities;
 
 import org.hibernate.annotations.DynamicUpdate;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
-@Table(name="production_type")
+@Table(name = "unit_of_measure")
 @DynamicUpdate
-public class ProductionType extends BaseEntity{
+public class UnitOfMeasure extends BaseEntity{
     private String name;
     private boolean isActive;
 
-    public ProductionType() {
+    public UnitOfMeasure() {
     }
 
     @Column(name = "name", nullable = false)

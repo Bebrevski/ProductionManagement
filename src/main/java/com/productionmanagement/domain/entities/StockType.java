@@ -2,16 +2,18 @@ package com.productionmanagement.domain.entities;
 
 import org.hibernate.annotations.DynamicUpdate;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
-@Table(name="production_type")
+@Table(name = "stock_type")
 @DynamicUpdate
-public class ProductionType extends BaseEntity{
+public class StockType extends BaseEntity{
     private String name;
     private boolean isActive;
 
-    public ProductionType() {
+    public StockType() {
     }
 
     @Column(name = "name", nullable = false)
