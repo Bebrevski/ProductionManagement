@@ -6,11 +6,7 @@ var inventoryComponent = Vue.component('inventory', {
    },
     created: function () {
        let vue = this;
-       this.message();
     },
     methods: {
-        message() {
-            console.log('inventory working');
-        }
     }
 });

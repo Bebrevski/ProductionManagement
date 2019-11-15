@@ -16,6 +16,7 @@ public class Stock extends BaseEntity {
     private LocalDate receivedOn;
     private UnitOfMeasure unitOfMeasure;
     private Production production;
+    private MaterialType materialType;
 
     public Stock() {
     }
@@ -84,5 +85,15 @@ public class Stock extends BaseEntity {
 
     public void setProduction(Production production) {
         this.production = production;
+    }
+
+    @ManyToOne(targetEntity = MaterialType.class)
+    @JoinColumn(name = "material_type_id", referencedColumnName = "id")
+    public MaterialType getMaterialType() {
+        return materialType;
+    }
+
+    public void setMaterialType(MaterialType materialType) {
+        this.materialType = materialType;
     }
 }

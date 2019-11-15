@@ -6,11 +6,7 @@ var manufacturyComponent = Vue.component('manufactury', {
    },
     created: function () {
        let vue = this;
-       this.message();
     },
     methods: {
-        message() {
-            console.log('Manufactury working');
-        }
     }
 });

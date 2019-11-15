@@ -45,8 +45,7 @@
                                 </v-tab>
                             </v-tabs>
                             <v-tabs-items v-model="tab">
-                                <v-tab-item v-for="(nom, index) in nomenclatureHeaders" :key=index :transition="false"
-                                            :reverse-transition="false">
+                                <v-tab-item v-for="(nom, index) in nomenclatureHeaders" :key=index>
                                     <nomenclature inline-template :id="nom.id">
                                         <div class="card-body">
                                             <template v-if="!dataIsLoaded">

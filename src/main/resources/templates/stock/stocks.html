@@ -1,0 +1,31 @@
+<v-container>
+    <v-layout row>
+        <v-flex auto>
+            <b>Склад</b>
+        </v-flex>
+        <v-flex auto>
+            <button v-on:click="onCreateStock"
+                    type="button"
+                    class="btn btn-sm btn-outline-secondary"
+                    style="float: right;" xmlns:v-on="http://www.w3.org/1999/xhtml">
+                <i class="fa fa-plus-square white-color"></i> Добави склад
+            </button>
+        </v-flex>
+    </v-layout>
+    <hr />
+
+    <fade-transition group>
+        <div v-for="(stock, index) in stocks" :key=index>
+            <v-layout row py-1>
+                <v-card width="100%"
+                        color="#eff4f9"
+                        raised
+                        hover>
+                    <v-flex auto>
+                        {{getStockTypeName(stock.stockTypeId)}}
+                    </v-flex>
+                </v-card>
+            </v-layout>
+        </div>
+    </fade-transition>
+</v-container>
