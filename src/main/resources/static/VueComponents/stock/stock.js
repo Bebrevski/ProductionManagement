@@ -23,20 +23,25 @@ var stockComponent = Vue.component('stock', {
     methods: {
         onCreateStock() {
             let newStock = new Stock();
-            newStock.inEditMode = true;
+            newStock.inCreateMode = true;
+            newStock.lastModified = dateFormatted(new Date());
             getNewUuid().then((uuid) => newStock.uuid = uuid.data);
             this.stocks.unshift(newStock);
         },
+        onSaveStock(newStock) {
+            let vue = this;
+            handleSaveStock(newStock, vue);
+        }
     },
     computed: {
-        getStockTypeName: function () {
-            return stockTypeId => {
-                let type = this.stockTypes.filter(x => x.key = stockTypeId);
-                return type.length === 0 ? '-' : type[0].Value;
-            }
-        }
     }
 });
+
+function handleSaveStock(newStock, vue) {
+    makeServerCall('post', '/stock/submitStock/' + vue.productionUuid, newStock, (ResultData) => {
+        console.log(ResultData);
+    });
+}
 
 function loadStocks(vue) {
     makeServerCall('get', '/stock/getStocks/' + vue.productionUuid, null, (ResultData) => {
@@ -62,4 +67,5 @@ function loadUnitsOfMeasure(vue) {
         vue.unitsOfMeasure = ResultData;
     });
 }
+
 //End on nomenclatures

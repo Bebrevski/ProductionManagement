@@ -5,10 +5,7 @@ import com.productionmanagement.helpers.KeyValuePair;
 import com.productionmanagement.helpers.OperationResult;
 import com.productionmanagement.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,6 +18,11 @@ public class StockController {
     @Autowired
     public StockController(StockService stockService) {
         this.stockService = stockService;
+    }
+
+    @PostMapping("/submitStock/{productionUuid}")
+    public OperationResult<StockModel> submitStock(@PathVariable String productionUuid, @RequestBody StockModel stockModel) {
+        return this.stockService.submitStock(productionUuid, stockModel);
     }
 
     @GetMapping("/getStocks/{productionUuid}")

@@ -14,4 +14,6 @@ public interface StockService {
     OperationResult<List<KeyValuePair<Integer, String>>> getUnitsOfMeasure();
 
     OperationResult<List<StockModel>> getStocks(String productionUuid);
+
+    OperationResult<StockModel> submitStock(String productionUuid, StockModel stockModel);
 }

@@ -37,9 +37,14 @@ public class StockServiceImpl implements StockService{
     }
 
     @Override
+    public OperationResult<StockModel> submitStock(String productionUuid, StockModel stockModel) {
+        return null;
+    }
+
+    @Override
     public OperationResult<List<StockModel>> getStocks(String productionUuid) {
-        List<StockModel> result = this.stockRepository.findAll().stream()
-                .filter(x -> x.getProduction().getUuid().equals(productionUuid))
+
+        List<StockModel> result = this.stockRepository.findAllByProduction_Uuid(productionUuid).stream()
                 .map(x -> mapper.map(x, StockModel.class))
                 .collect(Collectors.toList());
 
@@ -49,8 +54,7 @@ public class StockServiceImpl implements StockService{
     @Override
     public OperationResult<List<KeyValuePair<Integer, String>>> getStockTypes() {
         try{
-            List<KeyValuePair<Integer, String>> result = this.stockTypeRepository.findAll().stream()
-                    .filter(StockType::isActive)
+            List<KeyValuePair<Integer, String>> result = this.stockTypeRepository.findAllByActive(true).stream()
                     .map(x -> new KeyValuePair<>(x.getId(), x.getName()))
                     .collect(Collectors.toList());
 
@@ -63,8 +67,7 @@ public class StockServiceImpl implements StockService{
     @Override
     public OperationResult<List<KeyValuePair<Integer, String>>> getMaterialTypes() {
         try{
-            List<KeyValuePair<Integer, String>> result = this.materialTypeRepository.findAll().stream()
-                    .filter(MaterialType::isActive)
+            List<KeyValuePair<Integer, String>> result = this.materialTypeRepository.findAllByActive(true).stream()
                     .map(x -> new KeyValuePair<>(x.getId(), x.getName()))
                     .collect(Collectors.toList());
 
@@ -77,8 +80,7 @@ public class StockServiceImpl implements StockService{
     @Override
     public OperationResult<List<KeyValuePair<Integer, String>>> getUnitsOfMeasure() {
         try{
-            List<KeyValuePair<Integer, String>> result = this.unitOfMeasureRepository.findAll().stream()
-                    .filter(UnitOfMeasure::isActive)
+            List<KeyValuePair<Integer, String>> result = this.unitOfMeasureRepository.findAllByActive(true).stream()
                     .map(x -> new KeyValuePair<>(x.getId(), x.getName()))
                     .collect(Collectors.toList());
 

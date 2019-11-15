@@ -8,9 +8,4 @@ public class KeyValuePair<K, V> {
         this.key = key;
         this.value = value;
     }
-
-    @Override
-    public String toString() {
-        return String.format("Key: %s, Value: %s", this.key.toString(), this.value.toString());
-    }
 }

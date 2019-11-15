@@ -1,0 +1,17 @@
+<v-layout row py-1>
+    <v-card width="100%"
+            color="#eff4f9"
+            raised
+            hover>
+        <v-container py-1>
+            <v-layout row>
+                <v-flex md3>
+                    {{stock.stockType.name ? stock.stockType.name : '-'}}
+                </v-flex>
+                <v-flex md3>
+                    {{stock.lastModified ? stock.lastModified : 'няма данни'}}
+                </v-flex>
+            </v-layout>
+        </v-container>
+    </v-card>
+</v-layout>
