@@ -16,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,6 +36,7 @@ public class NomenclatureServiceImpl implements NomenclatureService {
         try {
             List<NomenclatureMetadataModel> nomenclatureHeaders = this.nomenclatureRepository.findAll()
                     .stream()
+                    .sorted(Comparator.comparingInt(Nomenclature::getHeadersOrderNumber))
                     .map(n -> new NomenclatureMetadataModel() {{
                         setId(n.getId());
                         setUuid(n.getUuid());

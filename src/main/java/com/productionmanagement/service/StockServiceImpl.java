@@ -1,5 +1,10 @@
 package com.productionmanagement.service;
 
+import com.productionmanagement.domain.entities.MaterialType;
+import com.productionmanagement.domain.entities.Stock;
+import com.productionmanagement.domain.entities.StockType;
+import com.productionmanagement.domain.entities.UnitOfMeasure;
+import com.productionmanagement.domain.models.stock.StockModel;
 import com.productionmanagement.helpers.KeyValuePair;
 import com.productionmanagement.helpers.OperationResult;
 import com.productionmanagement.repository.MaterialTypeRepository;
@@ -32,9 +37,20 @@ public class StockServiceImpl implements StockService{
     }
 
     @Override
+    public OperationResult<List<StockModel>> getStocks(String productionUuid) {
+        List<StockModel> result = this.stockRepository.findAll().stream()
+                .filter(x -> x.getProduction().getUuid().equals(productionUuid))
+                .map(x -> mapper.map(x, StockModel.class))
+                .collect(Collectors.toList());
+
+        return OperationResult.Success(result, null, null);
+    }
+
+    @Override
     public OperationResult<List<KeyValuePair<Integer, String>>> getStockTypes() {
         try{
             List<KeyValuePair<Integer, String>> result = this.stockTypeRepository.findAll().stream()
+                    .filter(StockType::isActive)
                     .map(x -> new KeyValuePair<>(x.getId(), x.getName()))
                     .collect(Collectors.toList());
 
@@ -48,6 +64,7 @@ public class StockServiceImpl implements StockService{
     public OperationResult<List<KeyValuePair<Integer, String>>> getMaterialTypes() {
         try{
             List<KeyValuePair<Integer, String>> result = this.materialTypeRepository.findAll().stream()
+                    .filter(MaterialType::isActive)
                     .map(x -> new KeyValuePair<>(x.getId(), x.getName()))
                     .collect(Collectors.toList());
 
@@ -61,6 +78,7 @@ public class StockServiceImpl implements StockService{
     public OperationResult<List<KeyValuePair<Integer, String>>> getUnitsOfMeasure() {
         try{
             List<KeyValuePair<Integer, String>> result = this.unitOfMeasureRepository.findAll().stream()
+                    .filter(UnitOfMeasure::isActive)
                     .map(x -> new KeyValuePair<>(x.getId(), x.getName()))
                     .collect(Collectors.toList());
 

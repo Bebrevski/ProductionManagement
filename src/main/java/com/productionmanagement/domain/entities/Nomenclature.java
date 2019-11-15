@@ -15,6 +15,7 @@ public class Nomenclature  extends BaseEntity{
     private String titleToBeDisplayed;
     private String connectedTableName;
     private String connectedTableIdColumnName;
+    private int headersOrderNumber;
 
     public Nomenclature() {
     }
@@ -62,5 +63,14 @@ public class Nomenclature  extends BaseEntity{
 
     public void setConnectedTableIdColumnName(String connectedTableIdColumnName) {
         this.connectedTableIdColumnName = connectedTableIdColumnName;
+    }
+
+    @Column(name = "headers_order_number")
+    public int getHeadersOrderNumber() {
+        return headersOrderNumber;
+    }
+
+    public void setHeadersOrderNumber(int headersOrderNumber) {
+        this.headersOrderNumber = headersOrderNumber;
     }
 }

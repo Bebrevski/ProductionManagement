@@ -1,6 +1,8 @@
 var stockComponent = Vue.component('stock', {
     data() {
         return {
+            productionUuid: window.location.pathname.split("/").pop(),
+
             stocks: [],
             stockTypes: [],
             materialTypes: [],
@@ -37,7 +39,7 @@ var stockComponent = Vue.component('stock', {
 });
 
 function loadStocks(vue) {
-    makeServerCall('get', '/stock/getStocks', null, (ResultData) => {
+    makeServerCall('get', '/stock/getStocks/' + vue.productionUuid, null, (ResultData) => {
         vue.stocks = ResultData;
     });
 }

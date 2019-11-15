@@ -4,19 +4,16 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "stocks")
 @DynamicUpdate
 public class Stock extends BaseEntity {
     private StockType stockType;
-    private String code;
-    private Double quantity;
-    private Double minimumQuantity;
-    private LocalDate receivedOn;
-    private UnitOfMeasure unitOfMeasure;
     private Production production;
-    private MaterialType materialType;
+    private LocalDate lastModified;
+    private List<Material> materials;
 
     public Stock() {
     }
@@ -31,52 +28,6 @@ public class Stock extends BaseEntity {
         this.stockType = stockType;
     }
 
-    @Column(name = "code", nullable = false)
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    @Column(name = "quantity", nullable = false)
-    public Double getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Double quantity) {
-        this.quantity = quantity;
-    }
-
-    @Column(name = "minimum_quantity")
-    public Double getMinimumQuantity() {
-        return minimumQuantity;
-    }
-
-    public void setMinimumQuantity(Double minimumQuantity) {
-        this.minimumQuantity = minimumQuantity;
-    }
-
-    @Column(name = "received_on")
-    public LocalDate getReceivedOn() {
-        return receivedOn;
-    }
-
-    public void setReceivedOn(LocalDate receivedOn) {
-        this.receivedOn = receivedOn;
-    }
-
-    @ManyToOne(targetEntity = UnitOfMeasure.class)
-    @JoinColumn(name = "unit_of_measure_id", referencedColumnName = "id")
-    public UnitOfMeasure getUnitOfMeasure() {
-        return unitOfMeasure;
-    }
-
-    public void setUnitOfMeasure(UnitOfMeasure unitOfMeasure) {
-        this.unitOfMeasure = unitOfMeasure;
-    }
-
     @ManyToOne(targetEntity = Production.class)
     @JoinColumn(name = "production_id", referencedColumnName = "id")
     public Production getProduction() {
@@ -87,13 +38,26 @@ public class Stock extends BaseEntity {
         this.production = production;
     }
 
-    @ManyToOne(targetEntity = MaterialType.class)
-    @JoinColumn(name = "material_type_id", referencedColumnName = "id")
-    public MaterialType getMaterialType() {
-        return materialType;
+    @Column(name = "last_modified")
+    public LocalDate getLastModified() {
+        return lastModified;
     }
 
-    public void setMaterialType(MaterialType materialType) {
-        this.materialType = materialType;
+    public void setLastModified(LocalDate lastModified) {
+        this.lastModified = lastModified;
+    }
+
+    @ManyToMany(targetEntity = Material.class)
+    @JoinTable(
+            name="stocks_materials",
+            joinColumns = @JoinColumn(name = "stock_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "material_id", referencedColumnName = "id")
+    )
+    public List<Material> getMaterials() {
+        return materials;
+    }
+
+    public void setMaterials(List<Material> materials) {
+        this.materials = materials;
     }
 }
