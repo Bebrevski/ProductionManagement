@@ -1,9 +1,5 @@
 package com.productionmanagement.service;
 
-import com.productionmanagement.domain.entities.MaterialType;
-import com.productionmanagement.domain.entities.Stock;
-import com.productionmanagement.domain.entities.StockType;
-import com.productionmanagement.domain.entities.UnitOfMeasure;
 import com.productionmanagement.domain.models.stock.StockModel;
 import com.productionmanagement.helpers.KeyValuePair;
 import com.productionmanagement.helpers.OperationResult;
