@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class StockServiceImpl implements StockService{
+public class StockServiceImpl implements StockService {
 
     private final StockRepository stockRepository;
     private final StockTypeRepository stockTypeRepository;
@@ -34,7 +34,11 @@ public class StockServiceImpl implements StockService{
 
     @Override
     public OperationResult<StockModel> submitStock(String productionUuid, StockModel stockModel) {
-        return null;
+        try {
+            return null;
+        } catch (Exception ex) {
+            return OperationResult.Exception(ex);
+        }
     }
 
     @Override
@@ -49,39 +53,39 @@ public class StockServiceImpl implements StockService{
 
     @Override
     public OperationResult<List<KeyValuePair<Integer, String>>> getStockTypes() {
-        try{
+        try {
             List<KeyValuePair<Integer, String>> result = this.stockTypeRepository.findAllByActive(true).stream()
                     .map(x -> new KeyValuePair<>(x.getId(), x.getName()))
                     .collect(Collectors.toList());
 
             return OperationResult.Success(result, null, null);
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             return OperationResult.Exception(ex);
         }
     }
 
     @Override
     public OperationResult<List<KeyValuePair<Integer, String>>> getMaterialTypes() {
-        try{
+        try {
             List<KeyValuePair<Integer, String>> result = this.materialTypeRepository.findAllByActive(true).stream()
                     .map(x -> new KeyValuePair<>(x.getId(), x.getName()))
                     .collect(Collectors.toList());
 
             return OperationResult.Success(result, null, null);
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             return OperationResult.Exception(ex);
         }
     }
 
     @Override
     public OperationResult<List<KeyValuePair<Integer, String>>> getUnitsOfMeasure() {
-        try{
+        try {
             List<KeyValuePair<Integer, String>> result = this.unitOfMeasureRepository.findAllByActive(true).stream()
                     .map(x -> new KeyValuePair<>(x.getId(), x.getName()))
                     .collect(Collectors.toList());
 
             return OperationResult.Success(result, null, null);
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             return OperationResult.Exception(ex);
         }
     }
