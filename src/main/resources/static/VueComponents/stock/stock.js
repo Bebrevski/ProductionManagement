@@ -57,7 +57,13 @@ function handleSaveStock(stock, vue) {
 }
 
 function handleDeleteStock(vue, index) {
-    
+    if (vue.stocks[index].id !== 0) {
+        promptActionConfirmation(questionToBeDeleted, () => {
+           let stockToBeDeleted; // TODO
+        });
+    }else {
+        vue.stocks.splice(index, 1);
+    }
 }
 
 function loadStocks(vue) {
@@ -84,5 +90,4 @@ function loadUnitsOfMeasure(vue) {
         vue.unitsOfMeasure = ResultData;
     });
 }
-
 //End on nomenclatures
