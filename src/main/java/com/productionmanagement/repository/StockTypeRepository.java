@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface StockTypeRepository extends JpaRepository<StockType, String> {
     List<StockType> findAllByActive(boolean active);
+
+    StockType findById(int id);
 }

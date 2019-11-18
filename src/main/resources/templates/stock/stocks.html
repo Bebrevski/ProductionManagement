@@ -1,13 +1,18 @@
 <v-container>
-    <v-container py-1>
         <v-layout row>
-            <v-flex md3>
+            <v-flex md2>
                 <b>Склад</b>
             </v-flex>
             <v-flex md3>
                 <b>Последна промяна</b>
             </v-flex>
-            <v-flex auto>
+            <v-flex md2>
+                <b>Действия склад</b>
+            </v-flex>
+            <v-flex md4>
+                <b>Действия материали</b>
+            </v-flex>
+            <v-flex md1>
                 <button v-on:click="onCreateStock"
                         type="button"
                         class="btn btn-sm btn-outline-secondary"
@@ -16,7 +21,6 @@
                 </button>
             </v-flex>
         </v-layout>
-    </v-container>
     <hr/>
 
     <fade-transition group>

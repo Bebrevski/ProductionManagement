@@ -8,6 +8,8 @@ var stockComponent = Vue.component('stock', {
             materialTypes: [],
             unitsOfMeasure: [],
 
+            objectBackups: {},
+
             loadedData: [],
             stockDataIsLoaded: true,
         }
@@ -31,16 +33,31 @@ var stockComponent = Vue.component('stock', {
         onSaveStock(newStock) {
             let vue = this;
             handleSaveStock(newStock, vue);
+        },
+        onEditStock(stock, index) {
+            this.objectBackups[stock.uuid] = copyObject(stock);
+            this.stocks[index].inCreateMode = true;
+            this.$forceUpdate();
+        },
+        onDeleteStock(index) {
+            let vue = this;
+            handleDeleteStock(vue, index);
         }
     },
     computed: {
     }
 });
 
-function handleSaveStock(newStock, vue) {
-    makeServerCall('post', '/stock/submitStock/' + vue.productionUuid, newStock, (ResultData) => {
-        console.log(ResultData);
+function handleSaveStock(stock, vue) {
+    makeServerCall('post', '/stock/submitStock/' + vue.productionUuid, stock, (ResultData) => {
+        stock = Object.assign(stock, ResultData);
+        stock.inCreateMode = false;
+        vue.$forceUpdate();
     });
+}
+
+function handleDeleteStock(vue, index) {
+    
 }
 
 function loadStocks(vue) {

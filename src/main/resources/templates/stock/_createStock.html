@@ -16,8 +16,9 @@
                               clearable>
                     </v-autocomplete>
                 </v-flex>
-                <v-flex md1>
+                <v-flex md2>
                     <v-btn icon v-on:click="onSaveStock(stock)" type="button" class="btn btn-sm btn-outline-secondary" title="Запази"><i class="fa fa-save"></i></v-btn>
+                    <v-btn icon v-on:click="onDeleteStock(stock)" type="button" class="btn btn-sm btn-outline-secondary" title="Изтрий"><i class="fa fa-trash"></i></v-btn>
                 </v-flex>
             </v-layout>
         </v-container>

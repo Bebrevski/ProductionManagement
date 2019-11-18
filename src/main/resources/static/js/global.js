@@ -151,12 +151,9 @@ function makeServerCall(verb, url, payload, onSuccessCode) {
         });
 }
 
-/// MEthod for hard copying objects
+/// Method for hard copying objects
 function copyObject(src) {
-    var clone1 = JSON.parse(JSON.stringify(src));
-    //var clone2 = jQuery.extend(true, {}, src); //Different way of cloning
-
-    return clone1;
+    return JSON.parse(JSON.stringify(src));
 }
 
 /// init izi Modal
