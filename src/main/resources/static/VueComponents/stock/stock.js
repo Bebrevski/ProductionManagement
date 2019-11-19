@@ -56,6 +56,10 @@ var stockComponent = Vue.component('stock', {
         onPreviewMaterials(stock) {
             stock.inPreviewMode = !stock.inPreviewMode;
             this.$forceUpdate();
+        },
+        onEditMaterials(stock) {
+            stock.inEditMaterialsMode = true;
+            this.$forceUpdate();
         }
     },
     computed: {

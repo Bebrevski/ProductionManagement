@@ -1,0 +1,12 @@
+<v-app id="inspire" xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
+    <v-row justify="center">
+        <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
+            <template v-slot:activator="{ on }">
+                <v-btn color="primary" dark v-on="on">Open Dialog</v-btn>
+            </template>
+            <v-card>
+
+            </v-card>
+        </v-dialog>
+    </v-row>
+</v-app>

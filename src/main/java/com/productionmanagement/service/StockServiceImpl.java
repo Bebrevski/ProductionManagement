@@ -62,6 +62,7 @@ public class StockServiceImpl implements StockService {
                     entity = this.mapper.map(stockModel, Stock.class);
                     entity.setStockType(this.stockTypeRepository.findById(stockModel.getStockTypeId()));
                     entity.setLastModified(LocalDate.now());
+                    entity.setActive(true);
 
                     entity = this.stockRepository.save(entity);
 
