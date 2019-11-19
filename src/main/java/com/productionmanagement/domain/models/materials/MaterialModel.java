@@ -1,4 +1,6 @@
-package com.productionmanagement.domain.models.stock;
+package com.productionmanagement.domain.models.materials;
+
+import com.productionmanagement.domain.models.unitsOfMeasure.UnitOfMeasureModel;
 
 import java.time.LocalDate;
 

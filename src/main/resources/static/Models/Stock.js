@@ -10,5 +10,6 @@ class Stock {
         this.production = {};
         this.stockType = {};
         this.inCreateMode = false;
+        this.inPreviewMode = false;
     }
 }

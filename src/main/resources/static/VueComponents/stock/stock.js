@@ -12,6 +12,16 @@ var stockComponent = Vue.component('stock', {
 
             loadedData: [],
             stockDataIsLoaded: true,
+
+            headers: [
+                { text: 'Материал', align: 'left', value: 'materialType.name', width: "20%" },
+                { text: 'Код', value: 'code', width: "20%" },
+                { text: 'Налично количество', value: 'quantity', width: "20%" },
+                { text: 'Минимално кол.', value: 'minimumQuantity', width: "20%" },
+                { text: 'Последно заприходени', value: 'receivedOn', width: "20%" },
+            ],
+            pagination: {},
+            search: '',
         }
     },
     created: function () {
@@ -42,9 +52,18 @@ var stockComponent = Vue.component('stock', {
         onDeleteStock(index) {
             let vue = this;
             handleDeleteStock(vue, index);
+        },
+        onPreviewMaterials(stock) {
+            stock.inPreviewMode = !stock.inPreviewMode;
+            this.$forceUpdate();
         }
     },
     computed: {
+        formatDate: function() {
+            return date => {
+                return dateFormatter(date);
+            }
+        }
     }
 });
 

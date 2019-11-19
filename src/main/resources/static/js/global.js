@@ -173,7 +173,7 @@ function loadingTableHide() {
 
 // used to convert all displayed dates in requested format
 function dateFormatted(date) {
-    var convertedDate = moment(date).format('DD.MM.YYYY');
+    let convertedDate = moment(date).format('DD.MM.YYYY');
     if (convertedDate === "Invalid date") {
         return date;
     }
@@ -181,12 +181,12 @@ function dateFormatted(date) {
 }
 
 // used to convert all displayed dates in format moment(date).calendar() -> Днес в 12:13
-function dateFormater(date) {
+function dateFormatter(date) {
     let convertedDate = moment(date).calendar(null, {
-        sameDay: '[Днес ]' + 'HH:mm',
-        lastDay: '[Вчера ]' + 'HH:mm',
-        lastWeek: 'DD/MM/YYYY HH:mm',
-        sameElse: 'DD/MM/YYYY HH:mm'
+        sameDay: '[Днес ]' + 'DD.MM.YYYY',
+        lastDay: '[Вчера ]' + 'DD.MM.YYYY',
+        lastWeek: 'DD.MM.YYYY',
+        sameElse: 'DD.MM.YYYY'
     });
     if (convertedDate === "Invalid date") {
         return date;

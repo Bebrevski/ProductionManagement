@@ -1,4 +1,4 @@
-package com.productionmanagement.domain.models.stock;
+package com.productionmanagement.domain.models.unitsOfMeasure;
 
 public class UnitOfMeasureModel {
     private int id;

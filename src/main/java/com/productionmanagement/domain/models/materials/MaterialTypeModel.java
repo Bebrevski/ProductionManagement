@@ -1,4 +1,4 @@
-package com.productionmanagement.domain.models.stock;
+package com.productionmanagement.domain.models.materials;
 
 public class MaterialTypeModel {
     private int id;

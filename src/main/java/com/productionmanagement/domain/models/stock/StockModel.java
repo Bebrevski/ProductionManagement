@@ -2,6 +2,7 @@ package com.productionmanagement.domain.models.stock;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.productionmanagement.domain.models.materials.MaterialModel;
 import com.productionmanagement.domain.models.production.ProductionModel;
 
 import java.time.LocalDate;

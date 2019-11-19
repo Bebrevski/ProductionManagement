@@ -1,0 +1,30 @@
+<v-card-title>
+    Материали
+    <v-spacer></v-spacer>
+    <v-text-field
+            v-model="search"
+            append-icon="search"
+            label="Търсене"
+            single-line
+            hide-details>
+    </v-text-field>
+</v-card-title>
+<v-data-table id="inspire"
+              v-bind:headers="headers"
+              v-bind:items="stock.materials"
+              item-key="id"
+              class="elevation-1"
+              disable-initial-sort
+              v-bind:search="search"
+              v-bind:pagination.sync="pagination"
+              no-data-text="Няма налични материали" xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
+    <template v-slot:items="props">
+        <tr class="cursor-pointer">
+            <td>{{ props.item.materialType.name }}</td>
+            <td>{{ props.item.code }}</td>
+            <td>{{ props.item.quantity }}</td>
+            <td>{{ props.item.minimumQuantity }}</td>
+            <td>{{ formatDate(props.item.receivedOn) }}</td>
+        </tr>
+    </template>
+</v-data-table>
