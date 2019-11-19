@@ -79,7 +79,6 @@ function handleSaveStock(stock, vue) {
 }
 
 function handleDeleteStock(vue, index) {
-    //TODO this method is not working properly - fix it !
     if (vue.stocks[index].id !== 0) {
         promptActionConfirmation(questionToBeDeleted, () => {
            let stockToBeDeleted = vue.stocks[index];

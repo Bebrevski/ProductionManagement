@@ -12,10 +12,10 @@
                     {{stock.lastModified ? stock.lastModified : 'няма данни'}}
                 </v-flex>
                 <v-flex md2>
-                    <v-btn icon v-on:click="onEditStock(stock, indexx)" type="button"
+                    <v-btn icon v-on:click="onEditStock(stock, index)" type="button"
                            class="btn btn-sm btn-outline-secondary" title="Редактирай"><i class="fa fa-edit"></i>
                     </v-btn>
-                    <v-btn icon v-on:click="onDeleteStock(indexx)" type="button" class="btn btn-sm btn-outline-secondary"
+                    <v-btn icon v-on:click="onDeleteStock(index)" type="button" class="btn btn-sm btn-outline-secondary"
                            title="Изтрий"><i class="fa fa-trash"></i></v-btn>
                 </v-flex>
                 <v-flex md4>
