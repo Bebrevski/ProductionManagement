@@ -24,7 +24,7 @@
     <hr/>
 
     <fade-transition group>
-        <div v-for="(stock, index) in stocks" :key=index>
+        <div v-for="(stock, indexx) in stocks" :key=indexx>
             <template v-if="stock.inCreateMode">
                 <th:block th:insert="~{stock/_createStock}"/>
             </template>

@@ -15,13 +15,16 @@ var stockComponent = Vue.component('stock', {
 
             headers: [
                 { text: 'Материал', align: 'left', value: 'materialType.name', width: "20%" },
-                { text: 'Код', value: 'code', width: "20%" },
+                { text: 'Код', value: 'code', width: "10%" },
                 { text: 'Налично количество', value: 'quantity', width: "20%" },
                 { text: 'Минимално кол.', value: 'minimumQuantity', width: "20%" },
+                { text: 'Мерна единица', value: 'unitOfMeasure.name', width: "10%" },
                 { text: 'Последно заприходени', value: 'receivedOn', width: "20%" },
             ],
             pagination: {},
             search: '',
+
+            dialog: false,
         }
     },
     created: function () {
@@ -56,10 +59,6 @@ var stockComponent = Vue.component('stock', {
         onPreviewMaterials(stock) {
             stock.inPreviewMode = !stock.inPreviewMode;
             this.$forceUpdate();
-        },
-        onEditMaterials(stock) {
-            stock.inEditMaterialsMode = true;
-            this.$forceUpdate();
         }
     },
     computed: {
@@ -80,6 +79,7 @@ function handleSaveStock(stock, vue) {
 }
 
 function handleDeleteStock(vue, index) {
+    //TODO this method is not working properly - fix it !
     if (vue.stocks[index].id !== 0) {
         promptActionConfirmation(questionToBeDeleted, () => {
            let stockToBeDeleted = vue.stocks[index];

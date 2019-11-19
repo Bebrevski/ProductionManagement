@@ -11,6 +11,5 @@ class Stock {
         this.stockType = {};
         this.inCreateMode = false;
         this.inPreviewMode = false;
-        this.inEditMaterialsMode = false;
     }
 }
