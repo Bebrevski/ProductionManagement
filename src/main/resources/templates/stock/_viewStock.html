@@ -37,6 +37,7 @@
 <v-card v-show="stock.inPreviewMode">
     <th:block th:insert="~{stock/_previewStockMaterials}"/>
 </v-card>
-<div id="material">
+
+<v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
     <th:block th:insert="~{materials/_editMaterials}"/>
-</div>
+</v-dialog>

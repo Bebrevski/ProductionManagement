@@ -1,8 +1,6 @@
-var materialComponent = new Vue({
-    el: '#material',
+var materialComponent = Vue.component('material', {
     data () {
         return {
-            dialog: false,
         }
     },
     created: function() {
