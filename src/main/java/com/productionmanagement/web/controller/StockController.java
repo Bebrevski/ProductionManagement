@@ -25,6 +25,11 @@ public class StockController {
         return this.stockService.submitStock(productionUuid, stockModel);
     }
 
+    @PostMapping("/deleteStock/{productionUuid}")
+    public OperationResult<StockModel> deleteStock(@PathVariable String productionUuid, @RequestBody StockModel stockToBeDeleted) {
+        return this.stockService.deleteStock(productionUuid, stockToBeDeleted);
+    }
+
     @GetMapping("/getStocks/{productionUuid}")
     public OperationResult<List<StockModel>> getStocks(@PathVariable String productionUuid) {
         return this.stockService.getStocks(productionUuid);

@@ -14,6 +14,7 @@ public class Stock extends BaseEntity {
     private Production production;
     private LocalDate lastModified;
     private List<Material> materials;
+    private boolean isActive;
 
     public Stock() {
     }
@@ -49,7 +50,7 @@ public class Stock extends BaseEntity {
 
     @ManyToMany(targetEntity = Material.class)
     @JoinTable(
-            name="stocks_materials",
+            name = "stocks_materials",
             joinColumns = @JoinColumn(name = "stock_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "material_id", referencedColumnName = "id")
     )
@@ -59,5 +60,14 @@ public class Stock extends BaseEntity {
 
     public void setMaterials(List<Material> materials) {
         this.materials = materials;
+    }
+
+    @Column(name = "is_active")
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }

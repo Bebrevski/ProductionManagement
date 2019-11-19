@@ -16,4 +16,6 @@ public interface StockService {
     OperationResult<List<StockModel>> getStocks(String productionUuid);
 
     OperationResult<StockModel> submitStock(String productionUuid, StockModel stockModel);
+
+    OperationResult<StockModel> deleteStock(String productionUuid, StockModel stockToBeDeleted);
 }

@@ -9,7 +9,9 @@ import java.util.Optional;
 
 @Repository
 public interface StockRepository extends JpaRepository<Stock, String> {
-    List<Stock> findAllByProduction_Uuid(String uuid);
+    List<Stock> findAllByProduction_UuidAndActiveIsTrue(String uuid);
 
-    Optional<Stock> findByUuid(String uuid);
+    Optional<Stock> findByUuidAndActiveIsTrue(String uuid);
+
+    Optional<Stock> findById(int id);
 }

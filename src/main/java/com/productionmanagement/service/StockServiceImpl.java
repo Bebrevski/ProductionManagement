@@ -44,7 +44,7 @@ public class StockServiceImpl implements StockService {
             if (result.Type != ResultType.Success) {
                 return result;
             } else {
-                Stock entity = this.stockRepository.findByUuid(stockModel.getUuid()).orElse(null);
+                Stock entity = this.stockRepository.findByUuidAndActiveIsTrue(stockModel.getUuid()).orElse(null);
 
                 if (entity == null) {
                     //create
@@ -52,6 +52,7 @@ public class StockServiceImpl implements StockService {
                     entity.setStockType(this.stockTypeRepository.findById(stockModel.getStockTypeId()));
                     entity.setProduction(this.productionRepository.getByUuid(productionUuid).orElse(null));
                     entity.setLastModified(LocalDate.now());
+                    entity.setActive(true);
 
                     entity = this.stockRepository.saveAndFlush(entity);
 
@@ -73,9 +74,31 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
+    public OperationResult<StockModel> deleteStock(String productionUuid, StockModel stockToBeDeleted) {
+        try{
+            OperationResult<StockModel> result;
+
+            Stock entity = this.stockRepository.findById(stockToBeDeleted.getId()).orElse(null);
+
+            result = approveDeletion(entity, stockToBeDeleted.getId());
+
+            if (result.Type == ResultType.Success){
+
+                this.stockRepository.delete(entity);
+
+                return OperationResult.Success("Успешно изтрит склад.");
+            }else {
+                return result;
+            }
+        }catch (Exception ex) {
+            return OperationResult.Exception(ex);
+        }
+    }
+
+    @Override
     public OperationResult<List<StockModel>> getStocks(String productionUuid) {
 
-        List<StockModel> result = this.stockRepository.findAllByProduction_Uuid(productionUuid).stream()
+        List<StockModel> result = this.stockRepository.findAllByProduction_UuidAndActiveIsTrue(productionUuid).stream()
                 .map(x -> mapper.map(x, StockModel.class))
                 .collect(Collectors.toList());
 
@@ -119,6 +142,18 @@ public class StockServiceImpl implements StockService {
         } catch (Exception ex) {
             return OperationResult.Exception(ex);
         }
+    }
+
+    private OperationResult<StockModel> approveDeletion(Stock entity, int stockId) throws BusinessException {
+        List<String> errorMessages = new ArrayList<>();
+
+        if (entity == null) throw new BusinessException("несъществуващ склад!");
+        if(!entity.getMaterials().isEmpty()) errorMessages.add("Склада съдържа материали! Изтрийте съдържанието и пробвайте отново.");
+
+        if (errorMessages.isEmpty()) {
+            return OperationResult.Success();
+        }
+        return OperationResult.Error("Не може да бъде изтрито!", errorMessages);
     }
 
     private OperationResult<StockModel> validateStock(String productionUuid, StockModel stockModel) throws BusinessException {

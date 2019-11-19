@@ -59,7 +59,13 @@ function handleSaveStock(stock, vue) {
 function handleDeleteStock(vue, index) {
     if (vue.stocks[index].id !== 0) {
         promptActionConfirmation(questionToBeDeleted, () => {
-           let stockToBeDeleted; // TODO
+           let stockToBeDeleted = vue.stocks[index];
+
+           if (stockToBeDeleted.id !== 0) {
+               makeServerCall('post', '/stock/deleteStock/' + vue.productionUuid, stockToBeDeleted, () => {
+                  vue.stocks.splice(index, 1);
+               });
+           }
         });
     }else {
         vue.stocks.splice(index, 1);
@@ -69,6 +75,7 @@ function handleDeleteStock(vue, index) {
 function loadStocks(vue) {
     makeServerCall('get', '/stock/getStocks/' + vue.productionUuid, null, (ResultData) => {
         vue.stocks = ResultData;
+        console.log(vue.stocks);
     });
 }
 
