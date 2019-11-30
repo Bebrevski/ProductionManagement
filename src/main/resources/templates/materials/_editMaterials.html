@@ -1,5 +1,5 @@
-<material inline-template>
+<material inline-template :funcdialog="closeDialog" :stockmaterials="stock.materials">
     <v-card>
-        HERE
+        <v-btn color="error" flat v-on:click="onDialogClose">Отказ</v-btn>
     </v-card>
 </material>

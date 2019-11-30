@@ -1,13 +1,24 @@
 var materialComponent = Vue.component('material', {
-    data () {
+    props: {
+        funcdialog: Function,
+        stockmaterials: Array,
+    },
+    data() {
         return {
+            materials: [],
         }
     },
-    created: function() {
+    created: function () {
         let vue = this;
-        console.log("Materails component working")
+        this.loadMaterials();
     },
     methods: {
-
+        onDialogClose: function () {
+            this.funcdialog();
+        },
+        loadMaterials: function () {
+            this.materials = this.stockmaterials;
+            console.log(this.materials);
+        }
     }
 });

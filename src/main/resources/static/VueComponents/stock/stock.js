@@ -59,6 +59,9 @@ var stockComponent = Vue.component('stock', {
         onPreviewMaterials(stock) {
             stock.inPreviewMode = !stock.inPreviewMode;
             this.$forceUpdate();
+        },
+        closeDialog() {
+            this.dialog = !this.dialog;
         }
     },
     computed: {
@@ -97,7 +100,6 @@ function handleDeleteStock(vue, index) {
 function loadStocks(vue) {
     makeServerCall('get', '/stock/getStocks/' + vue.productionUuid, null, (ResultData) => {
         vue.stocks = ResultData;
-        console.log(vue.stocks);
     });
 }
 
