@@ -1,5 +1,12 @@
 <material inline-template :funcdialog="closeDialog" :stockmaterials="stock.materials">
     <v-card>
-        <v-btn color="error" flat v-on:click="onDialogClose">Отказ</v-btn>
+        <v-toolbar dark color="primary">
+            <v-toolbar-title>Материали</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-toolbar-items>
+                <v-btn dark flat v-on:click="">Запази</v-btn>
+                <v-btn color="error" flat v-on:click="onDialogClose">Отказ</v-btn>
+            </v-toolbar-items>
+        </v-toolbar>
     </v-card>
 </material>
