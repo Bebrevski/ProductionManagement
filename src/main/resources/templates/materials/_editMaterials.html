@@ -5,8 +5,40 @@
             <v-spacer></v-spacer>
             <v-toolbar-items>
                 <v-btn dark flat v-on:click="">Запази</v-btn>
-                <v-btn color="error" flat v-on:click="onDialogClose">Отказ</v-btn>
+                <v-btn flat v-on:click="onDialogClose">Отказ</v-btn>
             </v-toolbar-items>
         </v-toolbar>
+        <v-container>
+            <v-layout v-for="(material, index) in materials" :key=index row justify-center>
+                <v-flex auto md3>
+                    <v-text-field v-model="material.materialType.name"
+                                  readonly
+                                  disabled>
+                    </v-text-field>
+                </v-flex>
+                <v-flex auto md1>
+                    <v-text-field v-model="material.code"
+                                  readonly
+                                  disabled>
+                    </v-text-field>
+                </v-flex>
+                <v-flex auto md1>
+                    <v-text-field v-model="material.quantity">
+                    </v-text-field>
+                </v-flex>
+                <v-flex auto md1>
+                    <v-text-field v-model="material.unitOfMeasure.name"
+                                  readonly
+                                  disabled>
+                    </v-text-field>
+                </v-flex>
+                <v-flex auto md1>
+                    <v-text-field v-model="material.minimumQuantity"
+                                  readonly
+                                  disabled>
+                    </v-text-field>
+                </v-flex>
+            </v-layout>
+        </v-container>
     </v-card>
 </material>
