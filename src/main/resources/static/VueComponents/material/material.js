@@ -19,6 +19,9 @@ var materialComponent = Vue.component('material', {
         loadMaterials: function () {
             this.materials = this.stockmaterials;
             console.log(this.materials);
+        },
+        addNewMaterial: function () {
+            console.log("Working")
         }
     }
 });

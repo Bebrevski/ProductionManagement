@@ -10,6 +10,12 @@
         </v-toolbar>
         <v-container>
             <v-layout v-for="(material, index) in materials" :key=index row justify-center>
+                <v-flex xs1>
+                    <v-text-field v-model="index"
+                                  readonly
+                                  disabled>
+                    </v-text-field>
+                </v-flex>
                 <v-flex auto md3>
                     <v-text-field v-model="material.materialType.name"
                                   readonly
@@ -37,6 +43,13 @@
                                   readonly
                                   disabled>
                     </v-text-field>
+                </v-flex>
+            </v-layout>
+            <v-layout row text-right>
+                <v-flex class="text-xs-right">
+                    <v-btn icon v-on:click="addNewMaterial" type="button" class="btn btn-sm btn-outline-secondary"
+                           title="Добави нов материал"><i class="fa fa-plus"></i>
+                    </v-btn>
                 </v-flex>
             </v-layout>
         </v-container>
