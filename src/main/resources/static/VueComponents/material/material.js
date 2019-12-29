@@ -5,12 +5,20 @@ var materialComponent = Vue.component('material', {
     },
     data() {
         return {
+            newMaterial: null,
+            isAdded: false,
+
             materials: [],
+            materialTypes: [],
+            unitsOfMeasure: []
         }
     },
     created: function () {
         let vue = this;
         this.loadMaterials();
+
+        loadMaterialTypesForComponent();
+        loadUnitsOfMeasureForComponent();
     },
     methods: {
         onDialogClose: function () {
@@ -18,10 +26,18 @@ var materialComponent = Vue.component('material', {
         },
         loadMaterials: function () {
             this.materials = this.stockmaterials;
-            console.log(this.materials);
         },
         addNewMaterial: function () {
-            console.log("Working")
+            this.isAdded = true;
+            this.newMaterial = new Material();
         }
     }
 });
+
+function loadMaterialTypesForComponent() {
+
+}
+
+function loadUnitsOfMeasureForComponent() {
+
+}

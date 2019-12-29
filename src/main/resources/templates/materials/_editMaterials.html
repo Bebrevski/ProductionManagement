@@ -45,6 +45,43 @@
                     </v-text-field>
                 </v-flex>
             </v-layout>
+            <template v-if="isAdded">
+                <v-layout row justify-center>
+                    <v-flex md1></v-flex>
+                    <v-flex auto md3>
+                        <v-autocomplete v-model="newMaterial.materialType"
+                                        :items="materials"
+                                        label="Избери материал"
+                                        item-text="value"
+                                        item-value="key"
+                                        no-data-text="Няма опции"
+                                        clearable>
+                        </v-autocomplete>
+                    </v-flex>
+                    <v-flex auto md1>
+                        <v-text-field v-bind:v-model="newMaterial.code">
+                        </v-text-field>
+                    </v-flex>
+                    <v-flex auto md1>
+                        <v-text-field v-bind:v-model="newMaterial.quantity">
+                        </v-text-field>
+                    </v-flex>
+                    <v-flex auto md1>
+                        <v-autocomplete v-model="newMaterial.unitOfMeasure"
+                                        :items="materials"
+                                        label="Избери мерна единица"
+                                        item-text="value"
+                                        item-value="key"
+                                        no-data-text="Няма опции"
+                                        clearable>
+                        </v-autocomplete>
+                    </v-flex>
+                    <v-flex auto md1>
+                        <v-text-field v-bind:v-model="newMaterial.minimumQuantity">
+                        </v-text-field>
+                    </v-flex>
+                </v-layout>
+            </template>
             <v-layout row text-right>
                 <v-flex class="text-xs-right">
                     <v-btn icon v-on:click="addNewMaterial" type="button" class="btn btn-sm btn-outline-secondary"
